@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxw.project.system.caseInfo.mapper.CaseInfoMapper">
+
+    <resultMap type="CaseInfo" id="CaseInfoResult">
+        <result property="caseId"    column="case_id"    />
+        <result property="caseMenuId"    column="case_menu_id"    />
+        <result property="caseName"    column="case_name"    />
+        <result property="caseText"    column="case_text"    />
+        <result property="imgType"    column="img_type"    />
+        <result property="coverImg"    column="cover_img"    />
+        <result property="viewTimes"    column="view_times"    />
+        <result property="uploadTime"    column="upload_time"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectCaseInfoVo">
+        select case_id, case_menu_id, case_name, case_text, img_type, cover_img, view_times, upload_time, create_by, create_time, update_by, update_time from sys_case_info
+    </sql>
+
+    <select id="selectCaseInfoList" parameterType="CaseInfo" resultMap="CaseInfoResult">
+        <include refid="selectCaseInfoVo"/>
+        <where>
+            <if test="caseMenuId != null "> and case_menu_id = #{caseMenuId}</if>
+            <if test="caseName != null  and caseName != ''"> and case_name like concat('%', #{caseName}, '%')</if>
+            <if test="caseText != null  and caseText != ''"> and case_text like concat('%', #{caseText}, '%')</if>
+            <if test="imgType != null  and imgType != ''"> and img_type = #{imgType}</if>
+            <if test="params.beginUploadTime != null and params.beginUploadTime != '' and params.endUploadTime != null and params.endUploadTime != ''"> and upload_time between #{params.beginUploadTime} and #{params.endUploadTime}</if>
+        </where>
+    </select>
+
+    <select id="selectCaseInfoById" parameterType="Integer" resultMap="CaseInfoResult">
+        <include refid="selectCaseInfoVo"/>
+        where case_id = #{caseId}
+    </select>
+
+    <insert id="insertCaseInfo" parameterType="CaseInfo">
+        insert into sys_case_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="caseId != null">case_id,</if>
+            <if test="caseMenuId != null">case_menu_id,</if>
+            <if test="caseName != null and caseName != ''">case_name,</if>
+            <if test="caseText != null">case_text,</if>
+            <if test="imgType != null">img_type,</if>
+            <if test="coverImg != null">cover_img,</if>
+            <if test="viewTimes != null">view_times,</if>
+            <if test="uploadTime != null">upload_time,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="caseId != null">#{caseId},</if>
+            <if test="caseMenuId != null">#{caseMenuId},</if>
+            <if test="caseName != null and caseName != ''">#{caseName},</if>
+            <if test="caseText != null">#{caseText},</if>
+            <if test="imgType != null">#{imgType},</if>
+            <if test="coverImg != null">#{coverImg},</if>
+            <if test="viewTimes != null">#{viewTimes},</if>
+            <if test="uploadTime != null">#{uploadTime},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateCaseInfo" parameterType="CaseInfo">
+        update sys_case_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="caseMenuId != null">case_menu_id = #{caseMenuId},</if>
+            <if test="caseName != null and caseName != ''">case_name = #{caseName},</if>
+            <if test="caseText != null">case_text = #{caseText},</if>
+            <if test="imgType != null">img_type = #{imgType},</if>
+            <if test="coverImg != null">cover_img = #{coverImg},</if>
+            <if test="viewTimes != null">view_times = #{viewTimes},</if>
+            <if test="uploadTime != null">upload_time = #{uploadTime},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where case_id = #{caseId}
+    </update>
+
+    <delete id="deleteCaseInfoById" parameterType="Integer">
+        delete from sys_case_info where case_id = #{caseId}
+    </delete>
+
+    <delete id="deleteCaseInfoByIds" parameterType="String">
+        delete from sys_case_info where case_id in
+        <foreach item="caseId" collection="array" open="(" separator="," close=")">
+            #{caseId}
+        </foreach>
+    </delete>
+
+</mapper>

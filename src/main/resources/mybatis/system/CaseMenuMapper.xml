@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxw.project.system.caseMenu.mapper.CaseMenuMapper">
+
+    <resultMap type="CaseMenu" id="CaseMenuResult">
+        <result property="caseMenuId"    column="case_menu_id"    />
+        <result property="caseMenuName"    column="case_menu_name"    />
+        <result property="caseMenuSummary"    column="case_menu_summary"    />
+        <result property="caseType"    column="case_type"    />
+        <result property="imgType"    column="img_type"    />
+        <result property="sort"    column="sort"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectCaseMenuVo">
+        select case_menu_id, case_menu_name, case_menu_summary, case_type, img_type, sort, create_by, create_time, update_by, update_time from sys_case_menu
+    </sql>
+
+    <select id="selectCaseMenuList" parameterType="CaseMenu" resultMap="CaseMenuResult">
+        <include refid="selectCaseMenuVo"/>
+        <where>
+            <if test="caseMenuName != null  and caseMenuName != ''"> and case_menu_name like concat('%', #{caseMenuName}, '%')</if>
+            <if test="caseMenuSummary != null  and caseMenuSummary != ''"> and case_menu_summary like concat('%', #{caseMenuSummary}, '%')</if>
+            <if test="caseType != null  and caseType != ''"> and case_type = #{caseType}</if>
+            <if test="imgType != null  and imgType != ''"> and img_type = #{imgType}</if>
+            <if test="sort != null "> and sort = #{sort}</if>
+        </where>
+    </select>
+
+    <select id="selectCaseMenuById" parameterType="Integer" resultMap="CaseMenuResult">
+        <include refid="selectCaseMenuVo"/>
+        where case_menu_id = #{caseMenuId}
+    </select>
+
+    <insert id="insertCaseMenu" parameterType="CaseMenu" useGeneratedKeys="true" keyProperty="caseMenuId">
+        insert into sys_case_menu
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="caseMenuName != null and caseMenuName != ''">case_menu_name,</if>
+            <if test="caseMenuSummary != null">case_menu_summary,</if>
+            <if test="caseType != null and caseType != ''">case_type,</if>
+            <if test="imgType != null and imgType != ''">img_type,</if>
+            <if test="sort != null">sort,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="caseMenuName != null and caseMenuName != ''">#{caseMenuName},</if>
+            <if test="caseMenuSummary != null">#{caseMenuSummary},</if>
+            <if test="caseType != null and caseType != ''">#{caseType},</if>
+            <if test="imgType != null and imgType != ''">#{imgType},</if>
+            <if test="sort != null">#{sort},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateCaseMenu" parameterType="CaseMenu">
+        update sys_case_menu
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="caseMenuName != null and caseMenuName != ''">case_menu_name = #{caseMenuName},</if>
+            <if test="caseMenuSummary != null">case_menu_summary = #{caseMenuSummary},</if>
+            <if test="caseType != null and caseType != ''">case_type = #{caseType},</if>
+            <if test="imgType != null and imgType != ''">img_type = #{imgType},</if>
+            <if test="sort != null">sort = #{sort},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where case_menu_id = #{caseMenuId}
+    </update>
+
+    <delete id="deleteCaseMenuById" parameterType="Integer">
+        delete from sys_case_menu where case_menu_id = #{caseMenuId}
+    </delete>
+
+    <delete id="deleteCaseMenuByIds" parameterType="String">
+        delete from sys_case_menu where case_menu_id in
+        <foreach item="caseMenuId" collection="array" open="(" separator="," close=")">
+            #{caseMenuId}
+        </foreach>
+    </delete>
+
+</mapper>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>后台登录</title>
+    <link href="../static/css/login.index.css" th:href="@{/css/login.index.css}" rel="stylesheet"/>
+    <!-- 360浏览器急速模式 -->
+    <meta name="renderer" content="webkit">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="../static/favicon.ico" th:href="@{favicon.ico}"/>
+    <style type="text/css">label.error {
+        position: inherit;
+    }</style>
+</head>
+<body class="signin">
+<canvas class="cavs" width="1575" height="1337"></canvas>
+
+<div class="loginmain">
+    <div class="login-title">
+        <span>后台管理系统</span>
+    </div>
+
+    <div class="login-con">
+        <form id="signupForm" autocomplete="off">
+            <div class="login-user">
+                <div class="icon">
+                    <img th:src="@{/img/login/user_icon_copy.png}" alt="">
+                </div>
+                <input type="text" name="username" class="form-control uname" placeholder="用户名" autocomplete="off"
+                       value="">
+            </div>
+            <div class="login-pwd">
+                <div class="icon">
+                    <img th:src="@{/img/login/lock_icon_copy.png}" alt="">
+                </div>
+                <input type="password" name="password" class="form-control pword" placeholder="密码" autocomplete="off"
+                       value="">
+            </div>
+            <div class="login-yan" th:if="${captchaEnabled == true}">
+                <div class="icon">
+                    <img th:src="@{/img/login/key.png}" alt="">
+                </div>
+                <input type="text" id="qrcodeInput" autocomplete="off" name="validateCode" class="form-control code"
+                       placeholder="验证码" maxlength="5">
+                <a href="javascript:void(0);" title="点击更换验证码" id="qrcodeImg">
+                    <img style="border-radius: 30px;opacity: 0.5;" th:src="@{captcha/captchaImage(type=${captchaType})}" class="imgcode" width="100%"/>
+                </a>
+            </div>
+            <div class="login-yan" th:classappend="${captchaEnabled==false} ? 'm-t'">
+                <input type="checkbox" id="rememberme" name="rememberme">
+                <label id="meLabel" for="rememberme">记住我</label>
+            </div>
+            <div class="login-btn">
+                <button id="btnSubmit" data-loading="正在验证登录，请稍后...">登&nbsp&nbsp录</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+<script th:inline="javascript"> var ctx = [[@{/}]]; var captchaType = [[${captchaType}]]; </script>
+<!-- 全局js -->
+<script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+<script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<!-- 验证插件 -->
+<script src="../static/ajax/libs/validate/jquery.validate.min.js"
+        th:src="@{/ajax/libs/validate/jquery.validate.min.js}"></script>
+<script src="../static/ajax/libs/validate/messages_zh.min.js"
+        th:src="@{/ajax/libs/validate/messages_zh.min.js}"></script>
+<script src="../static/ajax/libs/layer/layer.min.js" th:src="@{/ajax/libs/layer/layer.min.js}"></script>
+<script src="../static/ajax/libs/blockUI/jquery.blockUI.js" th:src="@{/ajax/libs/blockUI/jquery.blockUI.js}"></script>
+<script src="../static/ry/js/ry-ui.js" th:src="@{/ry/js/ry-ui.js?v=4.5.1}"></script>
+<script src="../static/ry/login.js" th:src="@{/ry/login.js}"></script>
+<script src="../static/js/ban.js" th:src="@{/js/ban.js}"></script>
+<script>
+    if (window.top !== window.self) {
+        alert('未登录或登录超时。请重新登录');
+        window.top.location = window.location
+    }
+    $('#rememberme').change(function () {
+        var flag = $(this).prop('checked');
+        if (flag) {
+            $('#meLabel').css('color', '#61BFFF');
+        } else {
+            $('#meLabel').css('color', 'gray');
+        }
+    });
+</script>
+</body>
+</html>
+

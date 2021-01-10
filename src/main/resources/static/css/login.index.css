@@ -1,0 +1,140 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/*表单自动填充样式修改*/
+:-webkit-autofill,
+:-webkit-autofill:hover,
+:-webkit-autofill:focus {
+    borrder: none;
+    /*字体颜色*/
+    -webkit-text-fill-color: #61BFFF;
+/*    背景颜色*/
+-webkit-box-shadow: 0 0 0px 1000px #676767 inset;
+transition: background-color 5000s ease-in-out 0s;
+    font-weight: 500;
+}
+
+.cavs{
+    z-index:1;
+    position: fixed;
+    width:95%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+html,body{
+    width: 100%;
+    height: 100%;
+    background: url("../img/login/bg1.jpg") no-repeat;
+    background-size: 100% 100%;
+
+}
+
+.loginmain{
+    background: rgba(0, 0, 0, 0.5);
+    width: 540px;
+    height: 300px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 100px 40px 40px 40px;
+    box-shadow: -15px 15px 15px rgba(6, 17, 47, 0.7);
+    z-index: 99999;
+}
+.login-title{
+    color: #D3D7F7;
+    height: 60px;
+    font-size:20px;
+    text-align: center;
+    margin-top: -20px;
+}
+.login-con{
+    height: 208px;
+    position: absolute;
+    left: 0;
+    width: 80%;
+    margin:0 10%;
+}
+.login-user{
+    position: relative;
+}
+.icon{
+    position: absolute;
+    z-index: 1;
+    left: 36px;
+    top: 8px;
+    opacity: 1;
+}
+.login-con input{
+    width: calc(100% - 130px);
+    margin-top: -2px;
+    background: rgba(57, 61, 82, 0);
+    left: 0;
+    padding: 10px 65px;
+    border-top: 2px solid rgba(57, 61, 82, 0);
+    border-bottom: 2px solid rgba(57, 61, 82, 0);
+    border-right: none;
+    border-left: none;
+    outline: none;
+    font-family: 'Gudea', sans-serif;
+    box-shadow: none;
+    color: #61BFFF !important;
+}
+.login-pwd, .login-yan{
+    position: relative;
+}
+
+.login-btn{
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+}
+.login-btn button{
+    border-radius: 3px;
+    background: transparent;
+    border: 2px solid #4FA1D9;
+    color: #4FA1D9;
+    text-transform: uppercase;
+    font-size: 11px;
+    cursor: pointer;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+    width: 80%;
+    height: 35px;
+    transition-property: background,color;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+}
+.login-btn button:hover{
+    color: white !important;
+    background: #4FA1D9;
+    cursor: pointer;
+    -webkit-transition-property: background,color;
+    transition-property: background,color;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+}
+.login-yan #qrcodeInput{
+    width: 200px;
+}
+.login-yan #qrcodeImg{
+    width: 100px;
+    height: 40px;
+    float: right;
+}
+.login-yan #rememberme{
+    width: 13px;
+    margin: 10px 13px 10px 36px
+}
+.login-yan #meLabel{
+    font-size: 13px;
+    color: gray;
+}

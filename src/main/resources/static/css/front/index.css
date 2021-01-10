@@ -1,0 +1,249 @@
+.container {
+    width: 1250px;
+}
+
+/*标题*/
+header {
+    padding: 0px;
+    display: flex;
+}
+
+#logoImg {
+    width: 358px;
+    height: 108px;
+}
+
+header .menu {
+    color: white;
+    background-color: #333333;
+    margin-left: 1px;
+    width: 860px;
+    height: 108px;
+    display: flex;
+}
+
+.menu div {
+    width: 143px;
+    height: 108px;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 20px;
+    padding: 50px 0 0 40px;
+    text-decoration: none;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+}
+
+.menu div:hover, .menu div:active {
+    background: #525252;
+}
+
+.menu div .lev2 {
+    font-size: 12px;
+    color: #efefef;
+    line-height: 20px;
+    text-decoration: none;
+}
+
+/*左侧栏*/
+nav {
+    background-color: #F6F6F6;
+    width: 160px;
+    float: left;
+}
+
+nav div a {
+    color: #000000;
+    text-decoration: none;
+}
+
+nav div {
+    font-family: "微软雅黑";
+    font-size: 14px;
+    line-height: 20px;
+    color: #000000;
+    text-decoration: none;
+    padding: 10px 20px;
+}
+
+nav .caseTypeGray {
+    background-color: #EFEFEF;
+}
+
+nav div:hover, nav div:active {
+    background-color: #DFDFDF;
+}
+
+nav div a:hover, nav div a:active {
+    text-decoration: none;
+}
+
+nav div .smallTitle {
+    font-size: 12px;
+    color: #ABABAB;
+    line-height: 20px;
+    text-decoration: none;
+}
+
+nav div .smallTitle:hover, nav div .smallTitle:active {
+    color: #000000;
+}
+
+#caseTypeBorder {
+    height: 7px;
+    background: #B6B5B5;
+}
+
+/*中间内容区域*/
+section {
+    width: 1060px;
+    float: left;
+}
+
+.detail {
+    padding: 0 0 0 15px;
+}
+
+.detail .menuTitle {
+    padding: 10px 0;
+    font-family: "微软雅黑";
+    font-size: 25px;
+    line-height: 35px;
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.detail .menuTitle a {
+    font-size: 15px;
+    color: #363636;
+    line-height: 30px;
+    text-decoration: none;
+    float: right;
+    font-weight: normal;
+}
+
+.about {
+    display: flex;
+}
+
+.about .img {
+    width: 340px;
+    height: 159px;
+}
+
+.about .img img {
+    width: 340px;
+    height: 159px;
+}
+
+.about .desc {
+    padding: 0 20px;
+    width: 700px;
+    height: 159px;
+    font-size: 15px;
+    line-height: 30px;
+    color: #363636;
+    text-decoration: none;
+    font-family: "微软雅黑";
+}
+
+.signImg img {
+    width: 206px;
+    height: 155px;
+    margin: -2px;
+}
+
+/*底部*/
+footer {
+    background-color: #1C1C1C;
+    color: white;
+    clear: both;
+    padding: 5px;
+    margin-top: 40px;
+}
+
+.foot-content {
+    width: 1200px;
+    height: 220px;
+    display: flex;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.footLogoDiv {
+    width: 313px;
+    height: 155px;
+}
+
+.footCase {
+    width: 380px;
+    height: 155px;
+}
+
+.footAbout span {
+    font-weight: bold;
+    margin: 8px 0;
+    font-size: 15px;
+    line-height: 25px;
+    font-family: "微软雅黑"
+}
+
+.footAbout p {
+    margin: 10px 0;
+}
+
+.verticalImg {
+    width: 46px;
+    height: 155px;
+}
+
+.footCall, .qrcode {
+    padding: 20px;
+}
+
+.footCall img {
+    margin: 10px 0;
+}
+
+.cpt {
+    margin: 0 auto;
+    width: 1200px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    font-size: 15px;
+    color: #bfbfbf;
+    text-decoration: none;
+    font-family: "微软雅黑";
+}
+
+.cpt a {
+    font-size: 14px;
+    color: #656565;
+    line-height: 28px;
+    text-decoration: none;
+}
+
+/*右侧悬浮*/
+html {
+    overflow-x: hidden;
+}
+
+.scrollsidebar {
+    position: absolute;
+    z-index: 999;
+    top: 350px;
+    right: 0
+}
+
+.side_content {
+    width: 100px;
+    height: auto;
+    overflow: hidden;
+    float: left;
+}
+

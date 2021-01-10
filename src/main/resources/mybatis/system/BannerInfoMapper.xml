@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxw.project.system.banner.mapper.BannerInfoMapper">
+
+    <resultMap type="BannerInfo" id="BannerInfoResult">
+        <result property="bannerId"    column="banner_id"    />
+        <result property="bannerName"    column="banner_name"    />
+        <result property="bannerImg"    column="banner_img"    />
+        <result property="status"    column="status"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectBannerInfoVo">
+        select banner_id, banner_name, banner_img, status, create_by, create_time, update_by, update_time from sys_banner_info
+    </sql>
+
+    <select id="selectBannerInfoList" parameterType="BannerInfo" resultMap="BannerInfoResult">
+        <include refid="selectBannerInfoVo"/>
+        <where>
+            <if test="bannerName != null  and bannerName != ''"> and banner_name like concat('%', #{bannerName}, '%')</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+        </where>
+    </select>
+
+    <select id="selectBannerInfoById" parameterType="Integer" resultMap="BannerInfoResult">
+        <include refid="selectBannerInfoVo"/>
+        where banner_id = #{bannerId}
+    </select>
+
+    <insert id="insertBannerInfo" parameterType="BannerInfo">
+        insert into sys_banner_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="bannerId != null">banner_id,</if>
+            <if test="bannerName != null">banner_name,</if>
+            <if test="bannerImg != null">banner_img,</if>
+            <if test="status != null">status,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="bannerId != null">#{bannerId},</if>
+            <if test="bannerName != null">#{bannerName},</if>
+            <if test="bannerImg != null">#{bannerImg},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateBannerInfo" parameterType="BannerInfo">
+        update sys_banner_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="bannerName != null">banner_name = #{bannerName},</if>
+            <if test="bannerImg != null">banner_img = #{bannerImg},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where banner_id = #{bannerId}
+    </update>
+
+    <delete id="deleteBannerInfoById" parameterType="Integer">
+        delete from sys_banner_info where banner_id = #{bannerId}
+    </delete>
+
+    <delete id="deleteBannerInfoByIds" parameterType="String">
+        delete from sys_banner_info where banner_id in
+        <foreach item="bannerId" collection="array" open="(" separator="," close=")">
+            #{bannerId}
+        </foreach>
+    </delete>
+
+</mapper>

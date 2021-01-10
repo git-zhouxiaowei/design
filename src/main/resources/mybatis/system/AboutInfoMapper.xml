@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxw.project.system.about.mapper.AboutInfoMapper">
+
+    <resultMap type="AboutInfo" id="AboutInfoResult">
+        <result property="aboutId"    column="about_id"    />
+        <result property="aboutName"    column="about_name"    />
+        <result property="address"    column="address"    />
+        <result property="telephone"    column="telephone"    />
+        <result property="cellphone"    column="cellphone"    />
+        <result property="email"    column="email"    />
+        <result property="qq"    column="qq"    />
+        <result property="codeImg"    column="code_img"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectAboutInfoVo">
+        select about_id, about_name, address, telephone, cellphone, email, qq, code_img, create_by, create_time, update_by, update_time from sys_about_info
+    </sql>
+
+    <select id="selectAboutInfoList" parameterType="AboutInfo" resultMap="AboutInfoResult">
+        <include refid="selectAboutInfoVo"/>
+        <where>
+            <if test="aboutName != null  and aboutName != ''"> and about_name like concat('%', #{aboutName}, '%')</if>
+            <if test="address != null  and address != ''"> and address like concat('%', #{address}, '%')</if>
+            <if test="telephone != null  and telephone != ''"> and telephone = #{telephone}</if>
+            <if test="cellphone != null  and cellphone != ''"> and cellphone = #{cellphone}</if>
+            <if test="email != null  and email != ''"> and email = #{email}</if>
+            <if test="qq != null  and qq != ''"> and qq = #{qq}</if>
+        </where>
+    </select>
+
+    <select id="selectAboutInfoById" parameterType="Integer" resultMap="AboutInfoResult">
+        <include refid="selectAboutInfoVo"/>
+        where about_id = #{aboutId}
+    </select>
+
+    <insert id="insertAboutInfo" parameterType="AboutInfo">
+        insert into sys_about_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="aboutId != null">about_id,</if>
+            <if test="aboutName != null">about_name,</if>
+            <if test="address != null">address,</if>
+            <if test="telephone != null">telephone,</if>
+            <if test="cellphone != null">cellphone,</if>
+            <if test="email != null">email,</if>
+            <if test="qq != null">qq,</if>
+            <if test="codeImg != null">code_img,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="aboutId != null">#{aboutId},</if>
+            <if test="aboutName != null">#{aboutName},</if>
+            <if test="address != null">#{address},</if>
+            <if test="telephone != null">#{telephone},</if>
+            <if test="cellphone != null">#{cellphone},</if>
+            <if test="email != null">#{email},</if>
+            <if test="qq != null">#{qq},</if>
+            <if test="codeImg != null">#{codeImg},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateAboutInfo" parameterType="AboutInfo">
+        update sys_about_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="aboutName != null">about_name = #{aboutName},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="telephone != null">telephone = #{telephone},</if>
+            <if test="cellphone != null">cellphone = #{cellphone},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="qq != null">qq = #{qq},</if>
+            <if test="codeImg != null">code_img = #{codeImg},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where about_id = #{aboutId}
+    </update>
+
+    <delete id="deleteAboutInfoById" parameterType="Integer">
+        delete from sys_about_info where about_id = #{aboutId}
+    </delete>
+
+    <delete id="deleteAboutInfoByIds" parameterType="String">
+        delete from sys_about_info where about_id in
+        <foreach item="aboutId" collection="array" open="(" separator="," close=")">
+            #{aboutId}
+        </foreach>
+    </delete>
+
+</mapper>

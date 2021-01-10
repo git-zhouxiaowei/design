@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header-front('河北达德')"/>
+    <link href="../static/css/front/index.css" th:href="@{/css/front/index.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <header>
+        <img id="logoImg" th:src="@{/img/front/logo.jpg}" alt="">
+        <div class="menu">
+            <a href="#">
+                <div>
+                    <span class="lev2">一分钟</span><br>
+                    <span>了解达德</span>
+                </div>
+            </a>
+            <a href="#">
+                <div>
+                    <span class="lev2">优秀团队帮您</span><br>
+                    <span>品牌提升</span>
+                </div>
+            </a>
+            <a href="#">
+                <div>
+                    <span class="lev2">精彩作品</span><br>
+                    <span>案例大全</span>
+                </div>
+            </a>
+            <a href="#">
+                <div>
+                    <span class="lev2"></span><br>
+                    <span>新闻动态</span>
+                </div>
+            </a>
+            <a href="#">
+                <div>
+                    <span class="lev2"></span><br>
+                    <span>联系我们</span>
+                </div>
+            </a>
+            <a href="#">
+                <div>
+                    <span class="lev2"></span><br>
+                    <span>在线招聘</span>
+                </div>
+            </a>
+        </div>
+    </header>
+
+    <nav>
+        <div class="caseType">
+            <a href="#">
+                品牌命名<br>
+                <span class="smallTitle">中文命名&nbsp英文命名</span>
+            </a>
+        </div>
+        <div class="caseTypeGray">
+            <a href="#">
+                品牌命名<br>
+                <span class="smallTitle">中文命名&nbsp英文命名</span>
+            </a>
+        </div>
+        <div class="caseType">
+            <a href="#">
+                品牌命名<br>
+                <span class="smallTitle">中文命名&nbsp英文命名</span>
+            </a>
+        </div>
+        <div class="caseTypeGray">
+            <a href="#">
+                品牌命名<br>
+                <span class="smallTitle">中文命名&nbsp英文命名</span>
+            </a>
+        </div>
+        <div class="caseType">
+            <a href="#">
+                品牌命名<br>
+                <span class="smallTitle">中文命名&nbsp英文命名</span>
+            </a>
+        </div>
+        <div class="caseTypeGray">
+            <a href="#">
+                品牌命名<br>
+                <span class="smallTitle">中文命名&nbsp英文命名</span>
+            </a>
+        </div>
+        <div class="caseType">
+            <a href="#">
+                品牌命名<br>
+                <span class="smallTitle">中文命名&nbsp英文命名</span>
+            </a>
+        </div>
+        <p id="caseTypeBorder"></p>
+    </nav>
+
+    <section class="right">
+        <!--  轮播图-->
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <a href="#">
+                        <img th:src="@{/img/front/banner1.jpg}" alt="banner1">
+                    </a>
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <div class="item">
+                    <a href="#">
+                        <img th:src="@{/img/front/banner2.jpg}" alt="banner2">
+                    </a>
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <div class="item">
+                    <a href="#">
+                        <img th:src="@{/img/front/banner3.jpg}" alt="banner3">
+                    </a>
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <div class="item">
+                    <a href="#">
+                        <img th:src="@{/img/front/banner4.jpg}" alt="banner4">
+                    </a>
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+            </div>
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <div class="detail">
+            <!-- 了解 -->
+            <div class="menuTitle">
+                <span>了解达德</span>
+                <a href="javascript:void(0);">更多>></a>
+            </div>
+            <div class="about">
+                <div class="img">
+                    <a href="#">
+                        <img th:src="@{/img/front/liaojie.jpg}">
+                    </a>
+                </div>
+                <div class="desc">
+                    河北达德广告设计有限公司（简称：达德）自成至今，致力于发展成为中国颇具规模和影响力的综合性品牌战略咨询和设计公司。不同于管理咨询公司和单纯的设计公司，达德专注于为客户创造和管理品牌，提供从品牌资产研究、市场洞察、品牌机会分析、品牌战略、品牌组合规划、命名和语词创作、设计（包括品牌识别VI设计、画册设计、包装设计、网络设计）到内部品牌导入、品牌管理制度建设的综合性服务，以提升客户在海内外的品牌影响力。
+                </div>
+            </div>
+            <!-- 品牌服务多图-->
+            <div class="menuTitle">
+                <span>品牌服务</span>
+                <a href="javascript:void(0);">更多>></a>
+            </div>
+            <div>
+                <div class="signImg">
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
+                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+<footer>
+    <div class="foot-content">
+        <div class="footLogoDiv">
+            <img th:src="@{/img/front/foot-logo.png}">
+        </div>
+        <!-- 竖分割图片-->
+        <img class="verticalImg" th:src="@{/img/front/vertical-img.jpg}">
+        <div class="footCase">
+            <div class="footAbout">
+                <span>河北达德广告设计有限公司</span><br>
+                <p>地址：石家庄市长江大道168号天山银河广场B区1单元307室</p>
+                <p>电话：0311-83115960 &nbsp&nbsp 15632199646</p>
+                <p>邮箱：E-mail:dadechina@126.com</p>
+            </div>
+            <img th:src="@{/img/front/foot-case.jpg}">
+        </div>
+        <!-- 竖分割图片-->
+        <img class="verticalImg" th:src="@{/img/front/vertical-img.jpg}">
+        <div class="footCall">
+            <img th:src="@{/img/front/oneToOne.jpg}"><br>
+            <a href="tencent://message/?uin=402935173&amp;Site=-&amp;Menu=yes">
+                <img th:src="@{/img/front/qq-online.jpg}">
+            </a>
+        </div>
+        <div class="qrcode">
+            <img th:src="@{/img/front/qrcode.jpg}">
+        </div>
+    </div>
+    <div class="cpt">Copyright © 2018 河北达德广告设计有限公司. 版权所有&nbsp&nbsp&nbsp&nbsp<a href="http://beian.miit.gov.cn/"
+                                                                               target="_blank">冀ICP备18011595号</a></div>
+</footer>
+<!--右侧悬浮-->
+<div class="scrollsidebar" id="scrollsidebar">
+    <div class="side_content">
+        <a href="tencent://message/?uin=402935173&amp;Site=-&amp;Menu=yes">
+            <img th:src="@{/img/front/QQzx.jpg}">
+        </a>
+        <a href="tencent://message/?uin=654700656&amp;Site=-&amp;Menu=yes">
+            <img th:src="@{/img/front/QQzx.jpg}">
+        </a>
+    </div>
+</div>
+<th:block th:include="include :: footer"/>
+<th:block th:include="include :: side-js"/>
+</body>
+</html>

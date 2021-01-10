@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('关于我')" />
+    <style>
+        .form-group{
+            font-family: "YaHei Consolas Hybrid", Consolas, "微软雅黑", "Meiryo UI", "Malgun Gothic", "Segoe UI", "Trebuchet MS", Helvetica, Monaco, courier, monospace;
+            font-size: 16px;
+        }
+        .form-group label{
+            font-weight: bold;
+            color: gray;
+        }
+        .form-group span{
+            color: blue;
+            height: 38px;
+            line-height: 38px;
+        }
+    </style>
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-about-edit" th:object="${aboutInfo}">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">单位名称：</label>
+            <div class="col-sm-8" >
+                <span th:text="*{aboutName}"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">地址：</label>
+            <div class="col-sm-8" >
+                <span th:text="*{address}"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">座机：</label>
+            <div class="col-sm-8" >
+                <span th:text="*{telephone}"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">手机：</label>
+            <div class="col-sm-8">
+                <span th:text="*{cellphone}"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">邮箱：</label>
+            <div class="col-sm-8" >
+                <span th:text="*{email}"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">QQ：</label>
+            <div class="col-sm-8" >
+                <span th:text="*{qq}"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">二维码图片：</label>
+            <div class="col-sm-8">
+                <img style="height: 100px;" th:src="*{codeImg}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label"></label>
+            <div class="col-sm-8">
+                <a class="btn btn-primary single" onclick="$.operate.edit(1)" shiro:hasPermission="system:about:edit">
+                    <i class="fa fa-edit"></i> 修改信息
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
+<th:block th:include="include :: footer" />
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('system:about:edit')}]];
+    var prefix = ctx + "system/about";
+
+    $(function() {
+        var options = {
+            modalName: "信息",
+            updateUrl: prefix + "/edit/{id}",
+        };
+        $.table.init(options);
+    });
+</script>
+</body>
+</html>
