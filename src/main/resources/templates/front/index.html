@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="container">
-    <header>
+    <header >
         <img id="logoImg" th:src="@{/img/front/logo.jpg}" alt="">
         <div class="menu">
             <a href="#">
@@ -254,14 +254,12 @@
 </footer>
 <!--右侧悬浮-->
 <div class="scrollsidebar" id="scrollsidebar">
-    <div class="side_content">
-        <a href="tencent://message/?uin=402935173&amp;Site=-&amp;Menu=yes">
-            <img th:src="@{/img/front/QQzx.jpg}">
-        </a>
-        <a href="tencent://message/?uin=654700656&amp;Site=-&amp;Menu=yes">
-            <img th:src="@{/img/front/QQzx.jpg}">
-        </a>
-    </div>
+    <a href="tencent://message/?uin=402935173&amp;Site=-&amp;Menu=yes">
+        <img th:src="@{/img/front/QQzx.jpg}">
+    </a><br/>
+    <a href="tencent://message/?uin=654700656&amp;Site=-&amp;Menu=yes">
+        <img th:src="@{/img/front/QQzx.jpg}">
+    </a>
 </div>
 <th:block th:include="include :: footer"/>
 <th:block th:include="include :: side-js"/>

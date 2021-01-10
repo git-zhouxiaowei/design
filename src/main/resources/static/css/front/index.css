@@ -6,6 +6,8 @@
 header {
     padding: 0px;
     display: flex;
+    position: fixed;
+    z-index: 100;
 }
 
 #logoImg {
@@ -15,8 +17,8 @@ header {
 
 header .menu {
     color: white;
-    background-color: #333333;
-    margin-left: 1px;
+    background-color: white;
+    padding-left: 1px;
     width: 860px;
     height: 108px;
     display: flex;
@@ -30,6 +32,7 @@ header .menu {
     line-height: 20px;
     padding: 50px 0 0 40px;
     text-decoration: none;
+    background: #333333;
 }
 
 .menu a {
@@ -37,7 +40,7 @@ header .menu {
     text-decoration: none;
 }
 
-.menu div:hover, .menu div:active {
+.menu div:hover{
     background: #525252;
 }
 
@@ -52,7 +55,9 @@ header .menu {
 nav {
     background-color: #F6F6F6;
     width: 160px;
-    float: left;
+    position: fixed;
+    z-index: 99;
+    top: 108px;
 }
 
 nav div a {
@@ -73,11 +78,11 @@ nav .caseTypeGray {
     background-color: #EFEFEF;
 }
 
-nav div:hover, nav div:active {
+nav div:hover{
     background-color: #DFDFDF;
 }
 
-nav div a:hover, nav div a:active {
+nav div a:hover{
     text-decoration: none;
 }
 
@@ -88,23 +93,25 @@ nav div .smallTitle {
     text-decoration: none;
 }
 
-nav div .smallTitle:hover, nav div .smallTitle:active {
+nav div .smallTitle:hover{
     color: #000000;
 }
 
 #caseTypeBorder {
     height: 7px;
     background: #B6B5B5;
+    margin: 0px;
 }
 
 /*中间内容区域*/
 section {
-    width: 1060px;
+    width: 1217px;
     float: left;
+    padding: 108px 0 0 160px;
 }
 
 .detail {
-    padding: 0 0 0 15px;
+    padding: 0 0 0 25px;
 }
 
 .detail .menuTitle {
@@ -155,9 +162,15 @@ section {
     width: 206px;
     height: 155px;
     margin: -2px;
+    transition: 0.3s;
+}
+.signImg img:hover{
+    /*阴影立体感*/
+    -webkit-filter: drop-shadow(8px 8px 10px gray);
+    filter: drop-shadow(8px 8px 10px gray);
 }
 
-/*底部*/
+    /*底部*/
 footer {
     background-color: #1C1C1C;
     color: white;
@@ -240,10 +253,4 @@ html {
     right: 0
 }
 
-.side_content {
-    width: 100px;
-    height: auto;
-    overflow: hidden;
-    float: left;
-}
 
