@@ -253,4 +253,32 @@ html {
     right: 0
 }
 
+/*其他菜单的内容展示，在线客服和中间富文本*/
+#onlineService{
+    float: right;
+    background-color: #EFEFEF;
+    padding: 0 15px;
+    width: 280px;
+    font-family: "微软雅黑";
+    font-size: 13px;
+    line-height: 25px;
+    color: #656565;
+    text-decoration: none;
+}
+#onlineService p{
+    margin: 0 ;
+}
+#onlineService .companyName{
+    font-size: 15px;
+    line-height: 25px;
+    font-weight: bold;
+}
+#onlineService a{
+    margin: 10px;
+    background-color: #E70012;
+}
+#onlineService a:hover{
+    background-color: #c90012;
+}
+
 
