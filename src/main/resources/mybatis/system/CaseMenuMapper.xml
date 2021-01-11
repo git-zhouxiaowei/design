@@ -28,8 +28,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="caseMenuSummary != null  and caseMenuSummary != ''"> and case_menu_summary like concat('%', #{caseMenuSummary}, '%')</if>
             <if test="caseType != null  and caseType != ''"> and case_type = #{caseType}</if>
             <if test="imgType != null  and imgType != ''"> and img_type = #{imgType}</if>
-            <if test="sort != null "> and sort = #{sort}</if>
+            <if test="sort != null "> and sort = #{sort} </if>
         </where>
+        order by sort asc
     </select>
 
     <select id="selectCaseMenuById" parameterType="Integer" resultMap="CaseMenuResult">

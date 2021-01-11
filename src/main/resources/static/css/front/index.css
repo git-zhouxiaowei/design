@@ -197,7 +197,7 @@ footer {
     height: 155px;
 }
 
-.footAbout span {
+.footAbout .aboutName {
     font-weight: bold;
     margin: 8px 0;
     font-size: 15px;

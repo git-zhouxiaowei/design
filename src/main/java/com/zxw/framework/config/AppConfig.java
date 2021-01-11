@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @author Zhouxw
  */
 @Component
-@ConfigurationProperties(prefix = "zxw")
+@ConfigurationProperties(prefix = "design")
 public class AppConfig {
     /**
      * 项目名称

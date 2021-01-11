@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="container">
-    <header >
+    <header>
         <img id="logoImg" th:src="@{/img/front/logo.jpg}" alt="">
         <div class="menu">
             <a href="#">
@@ -49,85 +49,33 @@
     </header>
 
     <nav>
-        <div class="caseType">
+        <div class="caseType" th:each="caseMenu:${caseMenuList}">
             <a href="#">
-                品牌命名<br>
-                <span class="smallTitle">中文命名&nbsp英文命名</span>
-            </a>
-        </div>
-        <div class="caseTypeGray">
-            <a href="#">
-                品牌命名<br>
-                <span class="smallTitle">中文命名&nbsp英文命名</span>
-            </a>
-        </div>
-        <div class="caseType">
-            <a href="#">
-                品牌命名<br>
-                <span class="smallTitle">中文命名&nbsp英文命名</span>
-            </a>
-        </div>
-        <div class="caseTypeGray">
-            <a href="#">
-                品牌命名<br>
-                <span class="smallTitle">中文命名&nbsp英文命名</span>
-            </a>
-        </div>
-        <div class="caseType">
-            <a href="#">
-                品牌命名<br>
-                <span class="smallTitle">中文命名&nbsp英文命名</span>
-            </a>
-        </div>
-        <div class="caseTypeGray">
-            <a href="#">
-                品牌命名<br>
-                <span class="smallTitle">中文命名&nbsp英文命名</span>
-            </a>
-        </div>
-        <div class="caseType">
-            <a href="#">
-                品牌命名<br>
-                <span class="smallTitle">中文命名&nbsp英文命名</span>
+                <span th:text="${caseMenu.caseMenuName}"></span><br>
+                <span class="smallTitle"  th:text="${caseMenu.caseMenuSummary}"></span>
             </a>
         </div>
         <p id="caseTypeBorder"></p>
     </nav>
 
-    <!--<section class="right" id="indexSection">
-        &lt;!&ndash;  轮播图&ndash;&gt;
+    <section class="right" id="indexSection">
+        <!--  轮播图-->
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                <li th:each="bannerInfo,stat :${bannerInfoList}" data-target="#carousel-example-generic" th:data-slide-to="${stat.index}" th:if="${stat.first}" class="active"></li>
+                <li th:each="bannerInfo,stat :${bannerInfoList}" data-target="#carousel-example-generic" th:data-slide-to="${stat.index}" th:if="${stat.index}>0"></li>
             </ol>
             <div class="carousel-inner" role="listbox">
-                <div class="item active">
+                <div th:each="bannerInfo,stat :${bannerInfoList}" th:if="${stat.first}" class="item active">
                     <a href="#">
-                        <img th:src="@{/img/front/banner1.jpg}" alt="banner1">
+                        <img th:src="${bannerInfo.bannerImg}" alt="${bannerInfo.bannerName}">
                     </a>
                     <div class="carousel-caption">
                     </div>
                 </div>
-                <div class="item">
+                <div class="item" th:each="bannerInfo,stat :${bannerInfoList}" th:if="${stat.index}>0">
                     <a href="#">
-                        <img th:src="@{/img/front/banner2.jpg}" alt="banner2">
-                    </a>
-                    <div class="carousel-caption">
-                    </div>
-                </div>
-                <div class="item">
-                    <a href="#">
-                        <img th:src="@{/img/front/banner3.jpg}" alt="banner3">
-                    </a>
-                    <div class="carousel-caption">
-                    </div>
-                </div>
-                <div class="item">
-                    <a href="#">
-                        <img th:src="@{/img/front/banner4.jpg}" alt="banner4">
+                        <img th:src="${bannerInfo.bannerImg}" alt="${bannerInfo.bannerName}">
                     </a>
                     <div class="carousel-caption">
                     </div>
@@ -143,7 +91,7 @@
             </a>
         </div>
         <div class="detail">
-            &lt;!&ndash; 了解 &ndash;&gt;
+            <!-- 了解 -->
             <div class="menuTitle">
                 <span>了解达德</span>
                 <a href="javascript:void(0);">更多>></a>
@@ -158,77 +106,40 @@
                     河北达德广告设计有限公司（简称：达德）自成至今，致力于发展成为中国颇具规模和影响力的综合性品牌战略咨询和设计公司。不同于管理咨询公司和单纯的设计公司，达德专注于为客户创造和管理品牌，提供从品牌资产研究、市场洞察、品牌机会分析、品牌战略、品牌组合规划、命名和语词创作、设计（包括品牌识别VI设计、画册设计、包装设计、网络设计）到内部品牌导入、品牌管理制度建设的综合性服务，以提升客户在海内外的品牌影响力。
                 </div>
             </div>
-            &lt;!&ndash; 品牌服务多图&ndash;&gt;
+            <!-- 品牌服务多图-->
             <div class="menuTitle">
                 <span>品牌服务</span>
                 <a href="javascript:void(0);">更多>></a>
             </div>
             <div>
                 <div class="signImg">
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi.jpg}"></a>
-                    <a href="javascript:void(0);"><img th:src="@{/img/front/vi2.jpg}"></a>
+                    <a href="javascript:void(0);" th:each="caseInfo :${caseInfoList}" >
+                        <img th:src="${caseInfo.coverImg}">
+                    </a>
                 </div>
             </div>
         </div>
-    </section>-->
-    <section class="right" id="indexSection">
+    </section>
+    <section class="right" id="nextSection">
         <div id="textContent">
 
         </div>
-        <div id="onlineService">
+        <div id="onlineService" th:object="${aboutInfo}">
             <h3>在线客服</h3>
-            <p class="companyName">河北达德广告设计有限公司</p>
-            <p class="address">地址：石家庄市长江大道168号天山银河广场B区1单元307室</p>
-            <p class="telephone">电话：0311-83115960　15632199646</p>
-            <p class="email">邮箱：E-mail:dadechina@126.com</p>
+            <p class="companyName" th:text="*{aboutName}"></p>
+            <p class="address">
+                地址：
+                <span th:text="*{address}"></span>
+            </p>
+            <p class="telephone">
+                电话：
+                <span th:text="*{telephone}"></span>&nbsp
+                <span th:text="*{cellphone}"></span>
+            </p>
+            <p class="email">
+                邮箱：
+                <span th:text="*{email}"></span>
+            </p>
             <div class="onlineBtn">
                 <a href="#" class="btn btn-danger">联系我们</a>
                 <a href="tencent://message/?uin=402935173&Site=-&Menu=yes" class="btn btn-danger">在线咨询</a>
@@ -244,11 +155,21 @@
         <!-- 竖分割图片-->
         <img class="verticalImg" th:src="@{/img/front/vertical-img.jpg}">
         <div class="footCase">
-            <div class="footAbout">
-                <span>河北达德广告设计有限公司</span><br>
-                <p>地址：石家庄市长江大道168号天山银河广场B区1单元307室</p>
-                <p>电话：0311-83115960 &nbsp&nbsp 15632199646</p>
-                <p>邮箱：E-mail:dadechina@126.com</p>
+            <div class="footAbout" th:object="${aboutInfo}">
+                <span class="aboutName" th:text="*{aboutName}">河北达德广告设计有限公司</span><br>
+                <p>
+                    地址：
+                    <span th:text="*{address}"></span>
+                </p>
+                <p>
+                    电话：
+                    <span th:text="*{telephone}"></span>&nbsp
+                    <span th:text="*{cellphone}"></span>
+                </p>
+                <p>
+                    邮箱：
+                    <span th:text="*{email}"></span>
+                </p>
             </div>
             <img th:src="@{/img/front/foot-case.jpg}">
         </div>
@@ -278,5 +199,6 @@
 </div>
 <th:block th:include="include :: footer"/>
 <th:block th:include="include :: side-js"/>
+<script th:src="@{/js/front/index.js?v=20200111}"></script>
 </body>
 </html>
