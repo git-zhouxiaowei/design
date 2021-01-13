@@ -182,4 +182,8 @@ public class Constants {
             ADD_HTML_VM = "add.html.vm",
             EDIT_HTML_VM = "edit.html.vm",
             SQL_VM = "sql.vm";
+    /**
+     * 前台菜单类型
+     */
+    public static final String YES = "Y", NO = "N";
 }

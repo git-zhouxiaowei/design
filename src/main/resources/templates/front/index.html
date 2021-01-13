@@ -9,47 +9,16 @@
     <header>
         <img id="logoImg" th:src="@{/img/front/logo.jpg}" alt="">
         <div class="menu">
-            <a href="#">
+            <a href="#" th:data-menuId="${menu.caseMenuId}" onclick="openCaseMenu(this.getAttribute('data-menuId'));" th:each="menu:${menuList}">
                 <div>
-                    <span class="lev2">一分钟</span><br>
-                    <span>了解达德</span>
-                </div>
-            </a>
-            <a href="#">
-                <div>
-                    <span class="lev2">优秀团队帮您</span><br>
-                    <span>品牌提升</span>
-                </div>
-            </a>
-            <a href="#">
-                <div>
-                    <span class="lev2">精彩作品</span><br>
-                    <span>案例大全</span>
-                </div>
-            </a>
-            <a href="#">
-                <div>
-                    <span class="lev2"></span><br>
-                    <span>新闻动态</span>
-                </div>
-            </a>
-            <a href="#">
-                <div>
-                    <span class="lev2"></span><br>
-                    <span>联系我们</span>
-                </div>
-            </a>
-            <a href="#">
-                <div>
-                    <span class="lev2"></span><br>
-                    <span>在线招聘</span>
+                    <span class="lev2" th:text="${menu.caseMenuSummary}">一分钟</span><br>
+                    <span th:text="${menu.caseMenuName}">了解达德</span>
                 </div>
             </a>
         </div>
     </header>
-
     <nav>
-        <div class="caseType" th:each="caseMenu:${caseMenuList}">
+        <div class="caseType" th:data-caseMenuId="${caseMenu.caseMenuId}" onclick="openCaseMenu(this.getAttribute('data-caseMenuId'));" th:each="caseMenu:${caseMenuList}">
             <a href="#">
                 <span th:text="${caseMenu.caseMenuName}"></span><br>
                 <span class="smallTitle"  th:text="${caseMenu.caseMenuSummary}"></span>
@@ -148,14 +117,14 @@
     </section>
 </div>
 <footer>
-    <div class="foot-content">
+    <div class="foot-content" th:object="${aboutInfo}">
         <div class="footLogoDiv">
             <img th:src="@{/img/front/foot-logo.png}">
         </div>
         <!-- 竖分割图片-->
         <img class="verticalImg" th:src="@{/img/front/vertical-img.jpg}">
         <div class="footCase">
-            <div class="footAbout" th:object="${aboutInfo}">
+            <div class="footAbout">
                 <span class="aboutName" th:text="*{aboutName}">河北达德广告设计有限公司</span><br>
                 <p>
                     地址：
@@ -182,7 +151,7 @@
             </a>
         </div>
         <div class="qrcode">
-            <img th:src="@{/img/front/qrcode.jpg}">
+            <img th:src="*{codeImg}">
         </div>
     </div>
     <div class="cpt">Copyright © 2018 河北达德广告设计有限公司. 版权所有&nbsp&nbsp&nbsp&nbsp<a href="http://beian.miit.gov.cn/"

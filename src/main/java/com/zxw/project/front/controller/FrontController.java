@@ -1,6 +1,7 @@
 package com.zxw.project.front.controller;
 
 import com.github.pagehelper.PageHelper;
+import com.zxw.common.constant.Constants;
 import com.zxw.framework.web.controller.BaseController;
 import com.zxw.framework.web.page.TableDataInfo;
 import com.zxw.project.system.about.domain.AboutInfo;
@@ -11,12 +12,16 @@ import com.zxw.project.system.caseInfo.domain.CaseInfo;
 import com.zxw.project.system.caseInfo.service.ICaseInfoService;
 import com.zxw.project.system.caseMenu.domain.CaseMenu;
 import com.zxw.project.system.caseMenu.service.ICaseMenuService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,6 +48,22 @@ public class FrontController extends BaseController {
         List<BannerInfo> bannerInfoList = bannerInfoService.selectBannerInfoList(new BannerInfo());
         // 案例菜单
         List<CaseMenu> caseMenuList = caseMenuService.selectCaseMenuList(new CaseMenu());
+        List<CaseMenu> menuList = new ArrayList<>(6);
+        // 拆分成两个列表
+        for (int i = 0; i < caseMenuList.size(); i++) {
+            if (Constants.YES.equals(caseMenuList.get(i).getMenuFlag())) {
+                menuList.add(caseMenuList.get(i));
+                caseMenuList.remove(i);
+                i--;
+            }
+        }
+        //如果主菜单少于6个，那么补充为6个
+        int size = 6 - menuList.size();
+        if (0 < size) {
+            for (int i = 0; i < size; i++) {
+                menuList.add(new CaseMenu());
+            }
+        }
         // 关于信息
         AboutInfo aboutInfo = aboutInfoService.selectAboutInfoById(1);
         // 首页案例样图，标志VI前50张列表
@@ -53,8 +74,20 @@ public class FrontController extends BaseController {
 
         mmp.put("bannerInfoList", bannerInfoList);
         mmp.put("aboutInfo", aboutInfo);
-        mmp.put("caseMenuList",caseMenuList);
-        mmp.put("caseInfoList",caseInfoList);
+        mmp.put("menuList", menuList);
+        mmp.put("caseMenuList", caseMenuList);
+        mmp.put("caseInfoList", caseInfoList);
         return prefix + "/index";
+    }
+
+    /**
+     * 查询案例列表
+     */
+    @PostMapping("/caseInfoList")
+    @ResponseBody
+    public TableDataInfo caseInfoList(CaseInfo caseInfo) {
+        startPage();
+        List<CaseInfo> list = caseInfoService.selectCaseInfoList(caseInfo);
+        return getDataTable(list);
     }
 }

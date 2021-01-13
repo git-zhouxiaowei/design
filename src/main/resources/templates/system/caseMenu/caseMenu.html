@@ -19,7 +19,7 @@
                             <input type="text" name="caseMenuSummary"/>
                         </li>
                         <li>
-                            <label>案例类型：</label>
+                            <label>菜单类型：</label>
                             <select name="caseType" th:with="type=${@dict.getType('sys_case_type')}">
                                 <option value="">所有</option>
                                 <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
@@ -27,8 +27,8 @@
                             </select>
                         </li>
                         <li>
-                            <label>图片类型：</label>
-                            <select name="imgType" th:with="type=${@dict.getType('sys_img_type')}">
+                            <label>主菜单：</label>
+                            <select name="imgType" th:with="type=${@dict.getType('sys_yes_no')}">
                                 <option value="">所有</option>
                                 <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
                                         th:value="${dict.dictValue}"></option>
@@ -70,8 +70,8 @@
 <script th:inline="javascript">
     var editFlag = [[${@permission.hasPermi('system:caseMenu:edit')}]];
     var removeFlag = [[${@permission.hasPermi('system:caseMenu:remove')}]];
-    var caseTypeDatas = [[${@dict.getType('sys_case_type')}]];
-    var imgTypeDatas = [[${@dict.getType('sys_img_type')}]];
+    var caseTypeDatas = [[${@dict.getType('sys_menu_type')}]];
+    var yesNoDatas = [[${@dict.getType('sys_yes_no')}]];
     var prefix = ctx + "system/caseMenu";
 
     $(function () {
@@ -92,24 +92,24 @@
                 },
                 {
                     field: 'caseMenuName',
-                    title: '案例菜单名称'
+                    title: '菜单名称'
                 },
                 {
                     field: 'caseMenuSummary',
-                    title: '案例菜单二级名称'
+                    title: '二级名称'
                 },
                 {
                     field: 'caseType',
-                    title: '案例类型',
+                    title: '菜单类型',
                     formatter: function (value, row, index) {
                         return $.table.selectDictLabel(caseTypeDatas, value);
                     }
                 },
                 {
-                    field: 'imgType',
-                    title: '图片类型',
+                    field: 'menuFlag',
+                    title: '主菜单',
                     formatter: function (value, row, index) {
-                        return $.table.selectDictLabel(imgTypeDatas, value);
+                        return $.table.selectDictLabel(yesNoDatas, value);
                     }
                 },
                 {
@@ -118,10 +118,12 @@
                 },
                 {
                     title: '操作',
-                    align: 'center',
+                    align: 'right',
                     formatter: function (value, row, index) {
                         var actions = [];
-                        actions.push('<a class="btn btn-info btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="openCaseInfo(\'' + row.caseMenuId + '\')"><i class="fa fa-edit"></i>案例管理</a> ');
+                        if ('list' != row.caseType) {
+                            actions.push('<a class="btn btn-info btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="openCaseInfo(\'' + row.caseMenuId + '\')"><i class="fa fa-edit"></i>案例管理</a> ');
+                        }
                         actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.caseMenuId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
                         actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.caseMenuId + '\')"><i class="fa fa-remove"></i>删除</a>');
                         return actions.join('');

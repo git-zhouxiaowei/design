@@ -26,26 +26,38 @@ public class CaseMenu extends BaseEntity {
     /**
      * 案例菜单名称
      */
-    @Excel(name = "案例菜单名称")
+    @Excel(name = "菜单名称")
     private String caseMenuName;
 
     /**
      * 案例菜单二级名称
      */
-    @Excel(name = "案例菜单二级名称")
+    @Excel(name = "二级名称")
     private String caseMenuSummary;
 
     /**
      * 案例类型
      */
-    @Excel(name = "案例类型")
+    @Excel(name = "菜单类型")
     private String caseType;
+
+    /**
+     * 通知类型
+     */
+    @Excel(name = "列表类型")
+    private String noticeType;
 
     /**
      * 图片类型
      */
     @Excel(name = "图片类型")
     private String imgType;
+
+    /**
+     * 是否主菜单
+     */
+    @Excel(name = "主菜单")
+    private String menuFlag;
 
     /**
      * 排序
