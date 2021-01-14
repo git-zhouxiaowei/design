@@ -88,4 +88,9 @@ public class CaseInfoServiceImpl implements ICaseInfoService {
     public int deleteCaseInfoById(Integer caseId) {
         return caseInfoMapper.deleteCaseInfoById(caseId);
     }
+
+    @Override
+    public CaseInfo selectTextCaseInfoByMenuId(Integer caseMenuId) {
+        return caseInfoMapper.selectTextCaseInfoByMenuId(caseMenuId);
+    }
 }

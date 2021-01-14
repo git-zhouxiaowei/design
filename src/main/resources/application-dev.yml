@@ -9,7 +9,7 @@ design:
   # 实例演示开关
   demoEnabled: false
   # 文件路径
-  profile: D:/logs/design/uploadPath
+  profile: D:/gather/uploadPath
   # 获取ip地址开关
   addressEnabled: false
 
@@ -89,9 +89,9 @@ spring:
     druid:
       # 主库数据源
       master:
-        url: jdbc:mysql://localhost:3306/design-java?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+        url: jdbc:mysql://47.94.41.232:3306/design-java?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
         username: root
-        password: root
+        password: Aisino_123
       # 从库数据源
       slave:
         # 从数据源开关/默认关闭

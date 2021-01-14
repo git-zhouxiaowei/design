@@ -100,4 +100,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </foreach>
     </delete>
 
+    <select id="selectTextCaseInfoByMenuId" parameterType="Integer" resultMap="CaseInfoResult">
+        <include refid="selectCaseInfoVo"/>
+        where case_menu_id = #{caseMenuId} order by case_id desc limit 1
+    </select>
 </mapper>

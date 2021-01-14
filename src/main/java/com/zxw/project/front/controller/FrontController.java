@@ -1,9 +1,14 @@
 package com.zxw.project.front.controller;
 
+import cn.hutool.core.util.IdUtil;
 import com.github.pagehelper.PageHelper;
 import com.zxw.common.constant.Constants;
+import com.zxw.common.utils.uuid.IdUtils;
 import com.zxw.framework.web.controller.BaseController;
+import com.zxw.framework.web.domain.AjaxResult;
+import com.zxw.framework.web.page.PageDomain;
 import com.zxw.framework.web.page.TableDataInfo;
+import com.zxw.framework.web.page.TableSupport;
 import com.zxw.project.system.about.domain.AboutInfo;
 import com.zxw.project.system.about.service.IAboutInfoService;
 import com.zxw.project.system.banner.domain.BannerInfo;
@@ -16,10 +21,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,6 +90,18 @@ public class FrontController extends BaseController {
     public TableDataInfo caseInfoList(CaseInfo caseInfo) {
         startPage();
         List<CaseInfo> list = caseInfoService.selectCaseInfoList(caseInfo);
-        return getDataTable(list);
+        TableDataInfo dataTable = getDataTable(list);
+        return dataTable;
     }
+
+    /**
+     * 查询案例富文本
+     */
+    @PostMapping("/textCaseInfo/{caseMenuId}")
+    @ResponseBody
+    public AjaxResult textCaseInfo(@PathVariable Integer caseMenuId) {
+        CaseInfo caseInfo = caseInfoService.selectTextCaseInfoByMenuId(caseMenuId);
+        return AjaxResult.success(caseInfo);
+    }
+
 }

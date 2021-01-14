@@ -9,7 +9,13 @@
     <header>
         <img id="logoImg" th:src="@{/img/front/logo.jpg}" alt="">
         <div class="menu">
-            <a href="#" th:data-menuId="${menu.caseMenuId}" onclick="openCaseMenu(this.getAttribute('data-menuId'));" th:each="menu:${menuList}">
+            <a href="#"
+               th:data-menuId="${menu.caseMenuId}"
+               th:data-caseType="${menu.caseType}"
+               th:data-caseMenuName="${menu.caseMenuName}"
+               th:data-imgType="${menu.imgType}"
+               onclick="openCaseMenu(this.getAttribute('data-menuId'),this.getAttribute('data-caseType'),this.getAttribute('data-caseMenuName'),this.getAttribute('data-imgType'));"
+               th:each="menu:${menuList}">
                 <div>
                     <span class="lev2" th:text="${menu.caseMenuSummary}">一分钟</span><br>
                     <span th:text="${menu.caseMenuName}">了解达德</span>
@@ -18,10 +24,16 @@
         </div>
     </header>
     <nav>
-        <div class="caseType" th:data-caseMenuId="${caseMenu.caseMenuId}" onclick="openCaseMenu(this.getAttribute('data-caseMenuId'));" th:each="caseMenu:${caseMenuList}">
+        <div class="caseType"
+             th:data-caseMenuId="${caseMenu.caseMenuId}"
+             th:data-caseType="${caseMenu.caseType}"
+             th:data-caseMenuName="${caseMenu.caseMenuName}"
+             th:data-imgType="${caseMenu.imgType}"
+             onclick="openCaseMenu(this.getAttribute('data-caseMenuId'),this.getAttribute('data-caseType'),this.getAttribute('data-caseMenuName'),this.getAttribute('data-imgType'));"
+             th:each="caseMenu:${caseMenuList}">
             <a href="#">
                 <span th:text="${caseMenu.caseMenuName}"></span><br>
-                <span class="smallTitle"  th:text="${caseMenu.caseMenuSummary}"></span>
+                <span class="smallTitle" th:text="${caseMenu.caseMenuSummary}"></span>
             </a>
         </div>
         <p id="caseTypeBorder"></p>
@@ -31,8 +43,10 @@
         <!--  轮播图-->
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
-                <li th:each="bannerInfo,stat :${bannerInfoList}" data-target="#carousel-example-generic" th:data-slide-to="${stat.index}" th:if="${stat.first}" class="active"></li>
-                <li th:each="bannerInfo,stat :${bannerInfoList}" data-target="#carousel-example-generic" th:data-slide-to="${stat.index}" th:if="${stat.index}>0"></li>
+                <li th:each="bannerInfo,stat :${bannerInfoList}" data-target="#carousel-example-generic"
+                    th:data-slide-to="${stat.index}" th:if="${stat.first}" class="active"></li>
+                <li th:each="bannerInfo,stat :${bannerInfoList}" data-target="#carousel-example-generic"
+                    th:data-slide-to="${stat.index}" th:if="${stat.index}>0"></li>
             </ol>
             <div class="carousel-inner" role="listbox">
                 <div th:each="bannerInfo,stat :${bannerInfoList}" th:if="${stat.first}" class="item active">
@@ -81,8 +95,8 @@
                 <a href="javascript:void(0);">更多>></a>
             </div>
             <div>
-                <div class="signImg">
-                    <a href="javascript:void(0);" th:each="caseInfo :${caseInfoList}" >
+                <div class="imgClick">
+                    <a href="javascript:void(0);" class="signImg" th:each="caseInfo :${caseInfoList}">
                         <img th:src="${caseInfo.coverImg}">
                     </a>
                 </div>
@@ -91,7 +105,41 @@
     </section>
     <section class="right" id="nextSection">
         <div id="textContent">
-
+            <span id="contentTitle"></span><br>
+            <div class="textCaseInfo">
+                <div class="imgClick">
+                    <a href="javascript:void(0);">
+                        <img th:src="@{/img/front/pinpai1.jpg}" alt="">
+                    </a>
+                    <a href="javascript:void(0);">
+                        <img th:src="@{/img/front/pinpai2.jpg}" alt="">
+                    </a>
+                    <a href="javascript:void(0);">
+                        <img th:src="@{/img/front/pinpai3.jpg}" alt="">
+                    </a>
+                    <a href="javascript:void(0);">
+                        <img th:src="@{/img/front/pinpai2.jpg}" alt="">
+                    </a>
+                    <a href="javascript:void(0);">
+                        <img th:src="@{/img/front/pinpai1.jpg}" alt="">
+                    </a>
+                    <a href="javascript:void(0);">
+                        <img th:src="@{/img/front/pinpai2.jpg}" alt="">
+                    </a>
+                    <a href="javascript:void(0);">
+                        <img th:src="@{/img/front/pinpai3.jpg}" alt="">
+                    </a>
+                    <a href="javascript:void(0);">
+                        <img th:src="@{/img/front/pinpai2.jpg}" alt="">
+                    </a>
+                    <a href="javascript:void(0);">
+                        <img th:src="@{/img/front/pinpai1.jpg}" alt="">
+                    </a>
+                    <a href="javascript:void(0);">
+                        <img th:src="@{/img/front/pinpai2.jpg}" alt="">
+                    </a>
+                </div>
+            </div>
         </div>
         <div id="onlineService" th:object="${aboutInfo}">
             <h3>在线客服</h3>

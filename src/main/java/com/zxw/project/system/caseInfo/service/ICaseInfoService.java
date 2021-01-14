@@ -58,4 +58,13 @@ public interface ICaseInfoService {
      * @return 结果
      */
     public int deleteCaseInfoById(Integer caseId);
+
+    /**
+     * @Author Zhouxw
+     * @Date 2021/01/13 10:59
+     * @Description 根据菜单ID查询最后一条案例
+     * @Param [caseMenuId]
+     * @Return com.zxw.project.system.caseInfo.domain.CaseInfo
+     */
+    CaseInfo selectTextCaseInfoByMenuId(Integer caseMenuId);
 }

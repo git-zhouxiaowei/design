@@ -3,6 +3,7 @@ package com.zxw.project.system.caseInfo.mapper;
 import java.util.List;
 
 import com.zxw.project.system.caseInfo.domain.CaseInfo;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 案例Mapper接口
@@ -58,4 +59,13 @@ public interface CaseInfoMapper {
      * @return 结果
      */
     public int deleteCaseInfoByIds(String[] caseIds);
+
+    /**
+     * @Author Zhouxw
+     * @Date 2021/01/13 10:59
+     * @Description 根据菜单ID查询最后一条案例
+     * @Param [caseMenuId]
+     * @Return com.zxw.project.system.caseInfo.domain.CaseInfo
+     */
+    CaseInfo selectTextCaseInfoByMenuId(Integer caseMenuId);
 }

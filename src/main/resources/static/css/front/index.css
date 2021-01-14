@@ -40,7 +40,7 @@ header .menu {
     text-decoration: none;
 }
 
-.menu div:hover{
+.menu div:hover {
     background: #525252;
 }
 
@@ -78,11 +78,11 @@ nav .caseTypeGray {
     background-color: #EFEFEF;
 }
 
-nav div:hover{
+nav div:hover {
     background-color: #DFDFDF;
 }
 
-nav div a:hover{
+nav div a:hover {
     text-decoration: none;
 }
 
@@ -93,7 +93,7 @@ nav div .smallTitle {
     text-decoration: none;
 }
 
-nav div .smallTitle:hover{
+nav div .smallTitle:hover {
     color: #000000;
 }
 
@@ -158,19 +158,97 @@ section {
     font-family: "微软雅黑";
 }
 
-.signImg img {
-    width: 206px;
-    height: 155px;
+.imgClick img {
     margin: -2px;
     transition: 0.3s;
 }
-.signImg img:hover{
+.signImg img {
+    width: 206px;
+    height: 155px;
+}
+
+.imgClick img:hover {
     /*阴影立体感*/
     -webkit-filter: drop-shadow(8px 8px 10px gray);
     filter: drop-shadow(8px 8px 10px gray);
 }
 
-    /*底部*/
+/*其他菜单的内容展示，在线客服和中间富文本*/
+
+#onlineService {
+    float: right;
+    background-color: #EFEFEF;
+    padding: 0 15px;
+    width: 280px;
+    font-family: "微软雅黑";
+    font-size: 13px;
+    line-height: 25px;
+    color: #656565;
+    text-decoration: none;
+}
+
+#onlineService p {
+    margin: 0;
+}
+
+#onlineService .companyName {
+    font-size: 15px;
+    line-height: 25px;
+    font-weight: bold;
+}
+
+#onlineService a {
+    margin: 10px;
+    background-color: #E70012;
+}
+
+#onlineService a:hover {
+    background-color: #c90012;
+}
+
+#textContent {
+    width: 750px;
+    display: inline-block;
+}
+
+#textContent span {
+    font-family: "微软雅黑";
+    font-size: 25px;
+    line-height: 60px;
+    height: 60px;
+    color: #000000;
+    font-weight: bold;
+    padding-left: 15px;
+}
+
+#textContent .textCaseInfo {
+    width: 750px;
+    float: left;
+    padding-left: 15px;
+}
+
+#textContent .textCaseInfo .imgClick .caseImg2 {
+    width: 206px;
+    height: 155px;
+    margin: 0 -3px 0 0;
+}
+#textContent .textCaseInfo .imgClick .caseImg3 {
+    width: 343px;
+    height: 258px;
+    margin: 0 -3px 0 0;
+}
+#textContent .textCaseInfo .imgClick .caseImg5 {
+    width: 510px;
+    height: 336px;
+    margin: 0 -3px 0 0;
+}
+
+#textContent .textCaseInfo .pageItem {
+    text-align: center;
+}
+
+
+/*底部*/
 footer {
     background-color: #1C1C1C;
     color: white;
@@ -253,32 +331,8 @@ html {
     right: 0
 }
 
-/*其他菜单的内容展示，在线客服和中间富文本*/
-#onlineService{
-    float: right;
-    background-color: #EFEFEF;
-    padding: 0 15px;
-    width: 280px;
-    font-family: "微软雅黑";
-    font-size: 13px;
-    line-height: 25px;
-    color: #656565;
-    text-decoration: none;
+/*初始化显示*/
+#nextSection {
+    display: none;
 }
-#onlineService p{
-    margin: 0 ;
-}
-#onlineService .companyName{
-    font-size: 15px;
-    line-height: 25px;
-    font-weight: bold;
-}
-#onlineService a{
-    margin: 10px;
-    background-color: #E70012;
-}
-#onlineService a:hover{
-    background-color: #c90012;
-}
-
 
