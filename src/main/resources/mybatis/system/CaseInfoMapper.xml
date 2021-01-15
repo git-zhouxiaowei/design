@@ -104,4 +104,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectCaseInfoVo"/>
         where case_menu_id = #{caseMenuId} order by case_id desc limit 1
     </select>
+
+    <select id="selectPreCaseInfoById" parameterType="Integer" resultMap="CaseInfoResult">
+        <include refid="selectCaseInfoVo"/>
+        where case_id  &lt;  #{caseId} order by case_id desc LIMIT 1
+    </select>
+
+    <select id="selectNextCaseInfoById" parameterType="Integer" resultMap="CaseInfoResult">
+        <include refid="selectCaseInfoVo"/>
+        where case_id  &gt;  #{caseId} order by case_id asc LIMIT 1
+    </select>
 </mapper>

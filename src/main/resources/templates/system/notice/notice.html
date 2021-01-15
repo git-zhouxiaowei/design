@@ -88,6 +88,14 @@
                     }
                 },
                 {
+                    field: 'coverImg',
+                    title: '封面图片',
+                    formatter: function (value, row, index) {
+                        var imgView = '<img style="height: 60px;" src="' + value + '" />';
+                        return imgView;
+                    }
+                },
+                {
                     field: 'status',
                     title: '状态',
                     align: 'center',

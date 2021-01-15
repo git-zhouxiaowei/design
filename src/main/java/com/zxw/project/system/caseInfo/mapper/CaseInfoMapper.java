@@ -68,4 +68,20 @@ public interface CaseInfoMapper {
      * @Return com.zxw.project.system.caseInfo.domain.CaseInfo
      */
     CaseInfo selectTextCaseInfoByMenuId(Integer caseMenuId);
+
+    /**
+     * 查询上一条案例
+     *
+     * @param caseId 案例ID
+     * @return 案例
+     */
+    CaseInfo selectPreCaseInfoById(Integer caseId);
+
+    /**
+     * 查询下一条案例
+     *
+     * @param caseId 案例ID
+     * @return 案例
+     */
+    CaseInfo selectNextCaseInfoById(Integer caseId);
 }

@@ -49,4 +49,20 @@ public interface INoticeService {
      * @return 结果
      */
     public int deleteNoticeByIds(String ids);
+
+    /**
+     * 查询上一条通知信息
+     *
+     * @param noticeId 通知ID
+     * @return 通知信息
+     */
+    Notice selectPreNoticeById(Long noticeId);
+
+    /**
+     * 查询下一条通知信息
+     *
+     * @param noticeId 通知ID
+     * @return 通知信息
+     */
+    Notice selectNextNoticeById(Long noticeId);
 }

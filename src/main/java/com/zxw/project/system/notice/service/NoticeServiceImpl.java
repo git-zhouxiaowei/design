@@ -79,4 +79,14 @@ public class NoticeServiceImpl implements INoticeService {
     public int deleteNoticeByIds(String ids) {
         return noticeMapper.deleteNoticeByIds(Convert.toStrArray(ids));
     }
+
+    @Override
+    public Notice selectPreNoticeById(Long noticeId) {
+        return noticeMapper.selectPreNoticeById(noticeId);
+    }
+
+    @Override
+    public Notice selectNextNoticeById(Long noticeId) {
+        return noticeMapper.selectNextNoticeById(noticeId);
+    }
 }

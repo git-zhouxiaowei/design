@@ -7,7 +7,9 @@
 <body>
 <div class="container">
     <header>
-        <img id="logoImg" th:src="@{/img/front/logo.jpg}" alt="">
+        <a href="javascript:showIndex()">
+            <img id="logoImg" th:src="@{/img/front/logo.jpg}">
+        </a>
         <div class="menu">
             <a href="#"
                th:data-menuId="${menu.caseMenuId}"
@@ -107,38 +109,6 @@
         <div id="textContent">
             <span id="contentTitle"></span><br>
             <div class="textCaseInfo">
-                <div class="imgClick">
-                    <a href="javascript:void(0);">
-                        <img th:src="@{/img/front/pinpai1.jpg}" alt="">
-                    </a>
-                    <a href="javascript:void(0);">
-                        <img th:src="@{/img/front/pinpai2.jpg}" alt="">
-                    </a>
-                    <a href="javascript:void(0);">
-                        <img th:src="@{/img/front/pinpai3.jpg}" alt="">
-                    </a>
-                    <a href="javascript:void(0);">
-                        <img th:src="@{/img/front/pinpai2.jpg}" alt="">
-                    </a>
-                    <a href="javascript:void(0);">
-                        <img th:src="@{/img/front/pinpai1.jpg}" alt="">
-                    </a>
-                    <a href="javascript:void(0);">
-                        <img th:src="@{/img/front/pinpai2.jpg}" alt="">
-                    </a>
-                    <a href="javascript:void(0);">
-                        <img th:src="@{/img/front/pinpai3.jpg}" alt="">
-                    </a>
-                    <a href="javascript:void(0);">
-                        <img th:src="@{/img/front/pinpai2.jpg}" alt="">
-                    </a>
-                    <a href="javascript:void(0);">
-                        <img th:src="@{/img/front/pinpai1.jpg}" alt="">
-                    </a>
-                    <a href="javascript:void(0);">
-                        <img th:src="@{/img/front/pinpai2.jpg}" alt="">
-                    </a>
-                </div>
             </div>
         </div>
         <div id="onlineService" th:object="${aboutInfo}">

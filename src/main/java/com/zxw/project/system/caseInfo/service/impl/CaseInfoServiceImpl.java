@@ -93,4 +93,14 @@ public class CaseInfoServiceImpl implements ICaseInfoService {
     public CaseInfo selectTextCaseInfoByMenuId(Integer caseMenuId) {
         return caseInfoMapper.selectTextCaseInfoByMenuId(caseMenuId);
     }
+
+    @Override
+    public CaseInfo selectPreCaseInfoById(Integer caseId) {
+        return caseInfoMapper.selectPreCaseInfoById(caseId);
+    }
+
+    @Override
+    public CaseInfo selectNextCaseInfoById(Integer caseId) {
+        return caseInfoMapper.selectNextCaseInfoById(caseId);
+    }
 }

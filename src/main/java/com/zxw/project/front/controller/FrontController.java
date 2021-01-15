@@ -1,14 +1,10 @@
 package com.zxw.project.front.controller;
 
-import cn.hutool.core.util.IdUtil;
 import com.github.pagehelper.PageHelper;
 import com.zxw.common.constant.Constants;
-import com.zxw.common.utils.uuid.IdUtils;
 import com.zxw.framework.web.controller.BaseController;
 import com.zxw.framework.web.domain.AjaxResult;
-import com.zxw.framework.web.page.PageDomain;
 import com.zxw.framework.web.page.TableDataInfo;
-import com.zxw.framework.web.page.TableSupport;
 import com.zxw.project.system.about.domain.AboutInfo;
 import com.zxw.project.system.about.service.IAboutInfoService;
 import com.zxw.project.system.banner.domain.BannerInfo;
@@ -17,7 +13,9 @@ import com.zxw.project.system.caseInfo.domain.CaseInfo;
 import com.zxw.project.system.caseInfo.service.ICaseInfoService;
 import com.zxw.project.system.caseMenu.domain.CaseMenu;
 import com.zxw.project.system.caseMenu.service.ICaseMenuService;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+import com.zxw.project.system.notice.domain.Notice;
+import com.zxw.project.system.notice.service.INoticeService;
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Zhouxw
@@ -43,6 +42,8 @@ public class FrontController extends BaseController {
     private ICaseInfoService caseInfoService;
     @Autowired
     private IBannerInfoService bannerInfoService;
+    @Autowired
+    private INoticeService noticeService;
 
     @GetMapping
     public String index(ModelMap mmp) {
@@ -95,13 +96,59 @@ public class FrontController extends BaseController {
     }
 
     /**
-     * 查询案例富文本
+     * 查询通知列表
+     */
+    @PostMapping("/noticeList")
+    @ResponseBody
+    public TableDataInfo noticeList(Notice notice, int caseMenuId) {
+        CaseMenu caseMenu = caseMenuService.selectCaseMenuById(caseMenuId);
+        notice.setNoticeType(caseMenu.getNoticeType());
+
+        startPage();
+        List<Notice> list = noticeService.selectNoticeList(notice);
+        return getDataTable(list);
+    }
+
+    /**
+     * 查询富文本类型的菜单详情数据
      */
     @PostMapping("/textCaseInfo/{caseMenuId}")
     @ResponseBody
     public AjaxResult textCaseInfo(@PathVariable Integer caseMenuId) {
         CaseInfo caseInfo = caseInfoService.selectTextCaseInfoByMenuId(caseMenuId);
         return AjaxResult.success(caseInfo);
+    }
+
+    /**
+     * 查询案例详情
+     */
+    @PostMapping("/caseText/{caseId}")
+    @ResponseBody
+    public AjaxResult caseText(@PathVariable Integer caseId) {
+        CaseInfo caseInfo = caseInfoService.selectCaseInfoById(caseId);
+        CaseInfo preCaseInfo = caseInfoService.selectPreCaseInfoById(caseId);
+        CaseInfo nextCaseInfo = caseInfoService.selectNextCaseInfoById(caseId);
+        Map<String, CaseInfo> dataMap = new HashedMap();
+        dataMap.put("caseInfo", caseInfo);
+        dataMap.put("preCaseInfo", preCaseInfo);
+        dataMap.put("nextCaseInfo", nextCaseInfo);
+        return AjaxResult.success(dataMap);
+    }
+
+    /**
+     * 查询通知详情
+     */
+    @PostMapping("/noticeInfo/{noticeId}")
+    @ResponseBody
+    public AjaxResult edit(@PathVariable("noticeId") Long noticeId) {
+        Notice notice = noticeService.selectNoticeById(noticeId);
+        Notice preNotice = noticeService.selectPreNoticeById(noticeId);
+        Notice nextNotice = noticeService.selectNextNoticeById(noticeId);
+        Map<String, Notice> dataMap = new HashedMap();
+        dataMap.put("notice", notice);
+        dataMap.put("preNotice", preNotice);
+        dataMap.put("nextNotice", nextNotice);
+        return AjaxResult.success(dataMap);
     }
 
 }

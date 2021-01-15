@@ -34,6 +34,11 @@ public class Notice extends BaseEntity {
     private String noticeTitle;
 
     /**
+     * 摘要
+     */
+    private String noticeSummary;
+
+    /**
      * 公告类型（1通知 2公告 2招聘）
      */
     private String noticeType;
@@ -47,6 +52,11 @@ public class Notice extends BaseEntity {
      * 公告状态（0正常 1关闭）
      */
     private String status;
+
+    /**
+     * 封面图片
+     */
+    private String coverImg;
 
     /**
      * 浏览次数

@@ -2,6 +2,7 @@
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="include :: header('修改通知公告')"/>
+    <th:block th:include="include :: bootstrap-fileinput-css"/>
     <th:block th:include="include :: summernote-css"/>
 </head>
 <body class="white-bg">
@@ -9,14 +10,20 @@
     <form class="form-horizontal m" id="form-notice-edit" th:object="${notice}">
         <input id="noticeId" name="noticeId" th:field="*{noticeId}" type="hidden">
         <div class="form-group">
-            <label class="col-sm-2 control-label is-required">公告标题：</label>
+            <label class="col-sm-2 control-label is-required">通知标题：</label>
             <div class="col-sm-10">
                 <input id="noticeTitle" name="noticeTitle" th:field="*{noticeTitle}" class="form-control" type="text"
                        required>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">公告类型：</label>
+            <label class="col-sm-2 control-label">通知摘要：</label>
+            <div class="col-sm-10">
+                <input id="noticeSummary" name="noticeSummary" th:field="*{noticeSummary}" class="form-control" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label is-required">公告类型：</label>
             <div class="col-sm-10">
                 <select name="noticeType" class="form-control m-b" th:with="type=${@dict.getType('sys_notice_type')}">
                     <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"
@@ -32,7 +39,16 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">公告状态：</label>
+            <label class="col-sm-2 control-label">封面图片：</label>
+            <div class="col-sm-10">
+                <input type="hidden" name="coverImg" th:field="*{coverImg}">
+                <div class="file-loading">
+                    <input class="form-control file-upload" id="coverImg" name="file" type="file">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label is-required">公告状态：</label>
             <div class="col-sm-10">
                 <div class="radio-box" th:each="dict : ${@dict.getType('sys_notice_status')}">
                     <input type="radio" th:id="${dict.dictCode}" name="status" th:value="${dict.dictValue}"
@@ -44,9 +60,26 @@
     </form>
 </div>
 <th:block th:include="include :: footer"/>
+<th:block th:include="include :: bootstrap-fileinput-js"/>
 <th:block th:include="include :: summernote-js"/>
 <script type="text/javascript">
     var prefix = ctx + "system/notice";
+
+    $(".file-upload").each(function (i) {
+        var val = $("input[name='" + this.id + "']").val()
+        $(this).fileinput({
+            'uploadUrl': ctx + 'common/upload',
+            initialPreviewAsData: true,
+            initialPreview: [val],
+            maxFileCount: 1,
+            autoReplace: true
+        }).on('fileuploaded', function (event, data, previewId, index) {
+            $("input[name='" + event.currentTarget.id + "']").val(data.response.url)
+        }).on('fileremoved', function (event, id, index) {
+            $("input[name='" + event.currentTarget.id + "']").val('')
+        })
+        $(this).fileinput('_initFileActions');
+    });
 
     $(function () {
         $('.summernote').summernote({

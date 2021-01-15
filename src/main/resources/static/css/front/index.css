@@ -162,6 +162,7 @@ section {
     margin: -2px;
     transition: 0.3s;
 }
+
 .signImg img {
     width: 206px;
     height: 155px;
@@ -211,7 +212,7 @@ section {
     display: inline-block;
 }
 
-#textContent span {
+#textContent #contentTitle {
     font-family: "微软雅黑";
     font-size: 25px;
     line-height: 60px;
@@ -227,26 +228,115 @@ section {
     padding-left: 15px;
 }
 
-#textContent .textCaseInfo .imgClick .caseImg2 {
+.textCaseInfo .imgClick .caseImg2 {
     width: 206px;
     height: 155px;
     margin: 0 -3px 0 0;
 }
-#textContent .textCaseInfo .imgClick .caseImg3 {
+
+.textCaseInfo .imgClick .caseImg3 {
     width: 343px;
     height: 258px;
     margin: 0 -3px 0 0;
 }
-#textContent .textCaseInfo .imgClick .caseImg5 {
+
+.textCaseInfo .imgClick .caseImg5 {
     width: 510px;
     height: 336px;
     margin: 0 -3px 0 0;
+}
+
+.imgClick .biggerImg {
+    float: left;
+}
+
+.imgClick .biggerImg span {
+    float: left;
+    color: black;
+    font-size: 16px;
+    line-height: 40px;
+    height: 50px;
+    text-decoration: none;
+}
+
+.imgClick .biggerImg span:hover {
+    color: #C30D23;
 }
 
 #textContent .textCaseInfo .pageItem {
     text-align: center;
 }
 
+#textContent .textCaseInfo .noticeRow {
+    display: flex;
+    height: 165px;
+    line-height: 165px;
+}
+
+.textCaseInfo .noticeRow img {
+    width: 201px;
+    height: 143px;
+    margin: 10px 25px 10px 5px;
+}
+
+.textCaseInfo .noticeRow h5 {
+    font-family: '微软雅黑';
+    font-size: 18px;
+    line-height: 30px;
+    font-weight: bold;
+}
+
+.textCaseInfo .noticeRow h5:hover {
+    color: #C30D23;
+}
+
+.textCaseInfo .noticeRow p {
+    font-size: 15px;
+    line-height: 30px;
+    color: #363636;
+    text-decoration: none;
+    font-family: "微软雅黑";
+}
+
+.textCaseInfo h5 {
+    text-align: center;
+    font-family: "微软雅黑";
+    font-size: 18px;
+    line-height: 30px;
+    font-weight: bold;
+    color: #363636;
+    text-decoration: none;
+}
+
+.textCaseInfo .timeTimes {
+    text-align: center;
+    height: 35px;
+    line-height: 35px;
+    background-color: #F6F6F6;
+    font-family: "微软雅黑";
+    font-size: 14px;
+    color: #656565;
+    text-decoration: none;
+    margin: 10px 0;
+}
+
+.textCaseInfo .tmpCoverShow {
+    width: 100%;
+    height: 100%;
+}
+
+.textCaseInfo .preAndNext {
+    text-align: center;
+    background-color: #EFEFEF;
+    font-family: "微软雅黑";
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 35px;
+    height: 35px;
+    color: #000000;
+    text-decoration: none;
+    margin: 10px 0;
+}
 
 /*底部*/
 footer {
