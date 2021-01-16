@@ -128,6 +128,9 @@ public class FrontController extends BaseController {
         CaseInfo caseInfo = caseInfoService.selectCaseInfoById(caseId);
         CaseInfo preCaseInfo = caseInfoService.selectPreCaseInfoById(caseId);
         CaseInfo nextCaseInfo = caseInfoService.selectNextCaseInfoById(caseId);
+        //更新浏览次数
+        caseInfo.setViewTimes(caseInfo.getViewTimes() + 1);
+        caseInfoService.updateCaseInfo(caseInfo);
         Map<String, CaseInfo> dataMap = new HashedMap();
         dataMap.put("caseInfo", caseInfo);
         dataMap.put("preCaseInfo", preCaseInfo);
@@ -144,6 +147,9 @@ public class FrontController extends BaseController {
         Notice notice = noticeService.selectNoticeById(noticeId);
         Notice preNotice = noticeService.selectPreNoticeById(noticeId);
         Notice nextNotice = noticeService.selectNextNoticeById(noticeId);
+        //更新浏览次数
+        notice.setViewTimes(notice.getViewTimes() + 1);
+        noticeService.updateNotice(notice);
         Map<String, Notice> dataMap = new HashedMap();
         dataMap.put("notice", notice);
         dataMap.put("preNotice", preNotice);
