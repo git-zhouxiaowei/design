@@ -1,0 +1,35 @@
+html, body, #mapContainer {
+    height: 100%;
+    width: 100%;
+}
+
+.amap-logo {
+    display: none;
+}
+
+.amap-copyright {
+    opacity: 0;
+}
+
+.dadeWindow {
+    width: 350px;
+    height: 100px;
+    background-color: white;
+    border-radius: 16px;
+    border: 1px solid gray;
+    padding: 0 10px
+}
+
+.dadeWindow h4 {
+    color: #C30d23;
+    font-size: 15px;
+    font-weight: bold;
+    height: 25px;
+    line-height: 25px;
+}
+
+.dadeWindow h4 a {
+    float: right;
+    font-size: 20px;
+    text-decoration: none;
+}

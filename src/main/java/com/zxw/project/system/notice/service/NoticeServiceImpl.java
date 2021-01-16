@@ -3,6 +3,8 @@ package com.zxw.project.system.notice.service;
 import java.util.List;
 
 import com.zxw.framework.aspectj.lang.annotation.DataScope;
+import com.zxw.framework.aspectj.lang.annotation.Log;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.zxw.common.utils.security.ShiroUtils;
@@ -17,6 +19,7 @@ import com.zxw.project.system.notice.domain.Notice;
  * @date 2018-06-25
  */
 @Service
+@Slf4j
 public class NoticeServiceImpl implements INoticeService {
     @Autowired
     private NoticeMapper noticeMapper;
@@ -65,7 +68,11 @@ public class NoticeServiceImpl implements INoticeService {
      */
     @Override
     public int updateNotice(Notice notice) {
-        notice.setUpdateBy(ShiroUtils.getLoginName());
+        try {
+            notice.setUpdateBy(ShiroUtils.getLoginName());
+        } catch (Exception e) {
+            log.info("页面修改浏览次数");
+        }
         return noticeMapper.updateNotice(notice);
     }
 

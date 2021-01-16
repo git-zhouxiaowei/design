@@ -1,12 +1,14 @@
-$(function () {
-
-
-});
-
 // 点击案列菜单或者主菜单
 function openCaseMenu(caseMenuId, caseType, caseMenuName, imgType) {
     // 先清空
     initData('', '');
+    /**
+     * 联系我们
+     */
+    if (8 == caseMenuId) {
+        aboutShow(caseMenuName);
+        return;
+    }
     //如果菜单类型是多图，那么分页取出多条
     if ('imgs' == caseType) {
         caseImgPage(1, caseMenuId, caseType, imgType, caseMenuName);
@@ -32,6 +34,20 @@ function caseImgPage(pageNum, caseMenuId, caseType, imgType, caseMenuName) {
     if ('' == pageNum) {
         pageNum = 1;
     }
+    /**
+     * 如果是案例大全，标题后增加案例菜单列表
+     */
+    var newTitleName = caseMenuName;
+    if (10 == caseMenuId) {
+        caseMenuId = 2;
+        var menuUrl = ctx + "front/caseMenuList";
+        $.post(menuUrl, function (resp) {
+            var caseMenuList = resp.data;
+            $.each(caseMenuList, function (i, e) {
+                newTitleName += '<a href="javascript:openCaseMenu(' + e.caseMenuId + ', \'' + e.caseType + '\', \'' + e.caseMenuName + '\',  \'' + e.imgType + '\')">' + e.caseMenuName + '</a>';
+            });
+        });
+    }
     var pageSize = 10;
     if ('206*155' == imgType) {
         pageSize = 40;
@@ -47,7 +63,7 @@ function caseImgPage(pageNum, caseMenuId, caseType, imgType, caseMenuName) {
     }, function (resp) {
         var rows = resp.rows;
         var total = resp.total;
-        initPageData(rows, pageNum, total, caseMenuId, caseMenuName, imgType);
+        initPageData(rows, pageNum, total, caseMenuId, caseMenuName, imgType, newTitleName);
     });
     //控制显隐
     showNext(caseType);
@@ -116,10 +132,22 @@ function noticeShow(noticeId, caseMenuName) {
     });
 }
 
+//单独查询联系我们这个案例菜单
+function aboutShow(caseMenuName) {
+    var url = ctx + "front/me";
+    $.post(url, function (resp) {
+        var caseInfo = resp.data;
+        var s = '<iframe width=\'700\' height=\'280\' frameborder=\'0\' scrolling=\'no\' marginheight=\'0\' marginwidth=\'0\' src="/design/front/toMap"></iframe>';
+        s += '<p></p>' + caseInfo.caseText;
+        initData(caseMenuName, s);
+        //控制显隐
+        showNext();
+    });
+}
+
 // 分页查询通知列表
 function noticePage(pageNum, caseMenuId, caseMenuName) {
     var url = ctx + "front/noticeList";
-
     if ('' == pageNum) {
         pageNum = 1;
     }
@@ -182,8 +210,9 @@ function initData(caseName, textCaeInfo) {
  * @param caseMenuId
  * @param caseMenuName
  * @param imgType
+ * @param newTitleName 如果是案例大全，会拼装新的标题
  */
-function initPageData(rows, pageNum, total, caseMenuId, caseMenuName, imgType) {
+function initPageData(rows, pageNum, total, caseMenuId, caseMenuName, imgType, newTitleName) {
     var pageSize = 10;
     var caseImgClass = 'caseImg2';
     var titFlag = false;
@@ -245,7 +274,6 @@ function initPageData(rows, pageNum, total, caseMenuId, caseMenuName, imgType) {
     }
     if (pageNum == totalPages) {
         p += '<li class="disabled">';
-
     } else {
         p += '<li>';
     }
@@ -256,7 +284,12 @@ function initPageData(rows, pageNum, total, caseMenuId, caseMenuName, imgType) {
         ' </ul>' +
         '</div>';
     var textCaeInfo = s + p;
-    initData(caseMenuName, textCaeInfo);
+
+    if ('' == newTitleName) {
+        initData(caseMenuName, textCaeInfo);
+    } else {
+        initData(newTitleName, textCaeInfo);
+    }
 }
 
 /**

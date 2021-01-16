@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>地图</title>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"/>
+    <link href="../static/css/front/amap.css" th:href="@{/css/front/amap.css}" rel="stylesheet"/>
+</head>
+<body>
+<div id="mapContainer"></div>
+<th:block th:include="include :: footer"/>
+<script type="text/javascript"
+        src="https://webapi.amap.com/maps?v=1.4.15&key=060d5c52911b95744b9391c51c95751c"></script>
+<script src="../static/js/front/amap.js" th:src="@{/js/front/amap.js?v=202001162}"></script>
+</body>
+</html>

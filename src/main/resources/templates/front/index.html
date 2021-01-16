@@ -79,11 +79,11 @@
             <!-- 了解 -->
             <div class="menuTitle">
                 <span>了解达德</span>
-                <a href="javascript:void(0);">更多>></a>
+                <a href="javascript:openCaseMenu(4, 'text', '了解达德', '')">更多>></a>
             </div>
             <div class="about">
                 <div class="img">
-                    <a href="#">
+                    <a href="javascript:openCaseMenu(4, 'text', '了解达德', '')">
                         <img th:src="@{/img/front/liaojie.jpg}">
                     </a>
                 </div>
@@ -94,11 +94,15 @@
             <!-- 品牌服务多图-->
             <div class="menuTitle">
                 <span>品牌服务</span>
-                <a href="javascript:void(0);">更多>></a>
+                <a href="javascript:openCaseMenu(10, 'imgs', '案例大全', '206*155')">更多>></a>
             </div>
             <div>
                 <div class="imgClick">
-                    <a href="javascript:void(0);" class="signImg" th:each="caseInfo :${caseInfoList}">
+                    <a class="signImg"
+                       th:data-caseId="${caseInfo.caseId}"
+                       href="javascript:void(0);"
+                       onclick="caseTextShow(this.getAttribute('data-caseId'),'案例大全')"
+                       th:each="caseInfo:${caseInfoList}">
                         <img th:src="${caseInfo.coverImg}">
                     </a>
                 </div>
@@ -128,7 +132,7 @@
                 <span th:text="*{email}"></span>
             </p>
             <div class="onlineBtn">
-                <a href="#" class="btn btn-danger">联系我们</a>
+                <a href="javascript:aboutShow('联系我们')" class="btn btn-danger">联系我们</a>
                 <a href="tencent://message/?uin=402935173&Site=-&Menu=yes" class="btn btn-danger">在线咨询</a>
             </div>
         </div>
@@ -186,6 +190,6 @@
 </div>
 <th:block th:include="include :: footer"/>
 <th:block th:include="include :: side-js"/>
-<script th:src="@{/js/front/index.js?v=20200111}"></script>
+<script th:src="@{/js/front/index.js?v=20200116}"></script>
 </body>
 </html>

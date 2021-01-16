@@ -45,6 +45,16 @@ public class FrontController extends BaseController {
     @Autowired
     private INoticeService noticeService;
 
+    /**
+     * @Author Zhouxw
+     * @Date 2021/01/16 16:43
+     * @Description 跳转地图页
+     */
+    @GetMapping("toMap")
+    public String toMap() {
+        return prefix + "/amap";
+    }
+
     @GetMapping
     public String index(ModelMap mmp) {
         // 轮播图列表
@@ -81,6 +91,29 @@ public class FrontController extends BaseController {
         mmp.put("caseMenuList", caseMenuList);
         mmp.put("caseInfoList", caseInfoList);
         return prefix + "/index";
+    }
+
+    /**
+     * 查询关于我
+     */
+    @PostMapping("/about")
+    @ResponseBody
+    public AjaxResult about() {
+        AboutInfo aboutInfo = aboutInfoService.selectAboutInfoById(1);
+        return AjaxResult.success(aboutInfo);
+    }
+
+    /**
+     * 查询左侧悬浮案例菜单列表
+     */
+    @PostMapping("/caseMenuList")
+    @ResponseBody
+    public AjaxResult caseMenuList() {
+        // 案例菜单
+        CaseMenu caseMenu = new CaseMenu();
+        caseMenu.setMenuFlag(Constants.NO);
+        List<CaseMenu> caseMenuList = caseMenuService.selectCaseMenuList(caseMenu);
+        return AjaxResult.success(caseMenuList);
     }
 
     /**
@@ -136,6 +169,16 @@ public class FrontController extends BaseController {
         dataMap.put("preCaseInfo", preCaseInfo);
         dataMap.put("nextCaseInfo", nextCaseInfo);
         return AjaxResult.success(dataMap);
+    }
+
+    /**
+     * 查询联系我们
+     */
+    @PostMapping("me")
+    @ResponseBody
+    public AjaxResult me() {
+        CaseInfo caseInfo = caseInfoService.selectCaseInfoById(234);
+        return AjaxResult.success(caseInfo);
     }
 
     /**
