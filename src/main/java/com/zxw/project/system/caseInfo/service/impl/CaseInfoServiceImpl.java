@@ -103,4 +103,9 @@ public class CaseInfoServiceImpl implements ICaseInfoService {
     public CaseInfo selectNextCaseInfoById(Integer caseId) {
         return caseInfoMapper.selectNextCaseInfoById(caseId);
     }
+
+    @Override
+    public List<CaseInfo> selectCoverImgList() {
+        return caseInfoMapper.selectCoverImgList();
+    }
 }

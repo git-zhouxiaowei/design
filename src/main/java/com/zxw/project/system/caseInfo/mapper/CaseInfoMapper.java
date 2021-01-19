@@ -84,4 +84,13 @@ public interface CaseInfoMapper {
      * @return 案例
      */
     CaseInfo selectNextCaseInfoById(Integer caseId);
+
+    /**
+     * 查询最新的含封面图片的案例列表
+     *
+     * @author Zhouxw
+     * @date 2021/01/19 14:35
+     * @return java.util.List<com.zxw.project.system.caseInfo.domain.CaseInfo>
+     */
+    List<CaseInfo> selectCoverImgList();
 }

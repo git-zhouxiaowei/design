@@ -114,4 +114,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectCaseInfoVo"/>
         where case_id  &gt;  #{caseId} order by case_id asc LIMIT 1
     </select>
+
+    <select id="selectCoverImgList" parameterType="CaseInfo" resultMap="CaseInfoResult">
+        <include refid="selectCaseInfoVo"/>
+        where cover_img is not null and cover_img != '' order by case_id desc LIMIT 10
+    </select>
 </mapper>

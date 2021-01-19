@@ -200,4 +200,22 @@ public class FrontController extends BaseController {
         return AjaxResult.success(dataMap);
     }
 
+
+    @GetMapping("/mini/initData")
+    @ResponseBody
+    public AjaxResult miniInitData() {
+        // 轮播图列表
+        List<BannerInfo> bannerInfoList = bannerInfoService.selectBannerInfoList(new BannerInfo());
+        // 首页最新案例滑动列表，10条
+        List<CaseInfo> caseInfoList = caseInfoService.selectCoverImgList();
+        // 最新通知列表，4条
+        PageHelper.startPage(1, 4, " create_time desc");
+        List<Notice> noticeList = noticeService.selectNoticeList(new Notice());
+
+        Map dataMap = new HashedMap();
+        dataMap.put("bannerInfoList", bannerInfoList);
+        dataMap.put("caseInfoList", caseInfoList);
+        dataMap.put("noticeList", noticeList);
+        return AjaxResult.success(dataMap);
+    }
 }
