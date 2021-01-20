@@ -145,7 +145,7 @@ public class FrontController extends BaseController {
     /**
      * 查询富文本类型的菜单详情数据
      */
-    @PostMapping("/textCaseInfo/{caseMenuId}")
+    @GetMapping("/textCaseInfo/{caseMenuId}")
     @ResponseBody
     public AjaxResult textCaseInfo(@PathVariable Integer caseMenuId) {
         CaseInfo caseInfo = caseInfoService.selectTextCaseInfoByMenuId(caseMenuId);
@@ -155,7 +155,7 @@ public class FrontController extends BaseController {
     /**
      * 查询案例详情
      */
-    @PostMapping("/caseText/{caseId}")
+    @GetMapping("/caseText/{caseId}")
     @ResponseBody
     public AjaxResult caseText(@PathVariable Integer caseId) {
         CaseInfo caseInfo = caseInfoService.selectCaseInfoById(caseId);
@@ -184,9 +184,9 @@ public class FrontController extends BaseController {
     /**
      * 查询通知详情
      */
-    @PostMapping("/noticeInfo/{noticeId}")
+    @GetMapping("/noticeInfo/{noticeId}")
     @ResponseBody
-    public AjaxResult edit(@PathVariable("noticeId") Long noticeId) {
+    public AjaxResult noticeInfo(@PathVariable("noticeId") Long noticeId) {
         Notice notice = noticeService.selectNoticeById(noticeId);
         Notice preNotice = noticeService.selectPreNoticeById(noticeId);
         Notice nextNotice = noticeService.selectNextNoticeById(noticeId);
@@ -200,13 +200,20 @@ public class FrontController extends BaseController {
         return AjaxResult.success(dataMap);
     }
 
-
+    /**
+     * 小程序首页数据初始化
+     *
+     * @return com.zxw.framework.web.domain.AjaxResult
+     * @author Zhouxw
+     * @date 2021/01/20 10:46
+     */
     @GetMapping("/mini/initData")
     @ResponseBody
     public AjaxResult miniInitData() {
         // 轮播图列表
         List<BannerInfo> bannerInfoList = bannerInfoService.selectBannerInfoList(new BannerInfo());
         // 首页最新案例滑动列表，10条
+        PageHelper.startPage(1, 10, " case_id desc");
         List<CaseInfo> caseInfoList = caseInfoService.selectCoverImgList();
         // 最新通知列表，4条
         PageHelper.startPage(1, 4, " create_time desc");
@@ -217,5 +224,70 @@ public class FrontController extends BaseController {
         dataMap.put("caseInfoList", caseInfoList);
         dataMap.put("noticeList", noticeList);
         return AjaxResult.success(dataMap);
+    }
+
+    /**
+     * 小程序查询案例详情
+     */
+    @GetMapping("/mini/caseText/{caseId}")
+    @ResponseBody
+    public AjaxResult miniCaseText(@PathVariable Integer caseId) {
+        CaseInfo caseInfo = caseInfoService.selectCaseInfoById(caseId);
+        //更新浏览次数
+        caseInfo.setViewTimes(caseInfo.getViewTimes() + 1);
+        caseInfoService.updateCaseInfo(caseInfo);
+        return AjaxResult.success(caseInfo);
+    }
+
+    /**
+     * 查询通知详情
+     */
+    @GetMapping("/mini/noticeInfo/{noticeId}")
+    @ResponseBody
+    public AjaxResult miniNoticeInfo(@PathVariable("noticeId") Long noticeId) {
+        Notice notice = noticeService.selectNoticeById(noticeId);
+        //更新浏览次数
+        notice.setViewTimes(notice.getViewTimes() + 1);
+        noticeService.updateNotice(notice);
+        return AjaxResult.success(notice);
+    }
+
+    /**
+     * 最新设计分页查询
+     *
+     * @param pageNum
+     * @return com.zxw.framework.web.domain.AjaxResult
+     * @author Zhouxw
+     * @date 2021/01/20 12:02
+     */
+    @GetMapping("/mini/newCaseInfoPage/{pageNum}")
+    @ResponseBody
+    public AjaxResult newCaseInfoPage(@PathVariable("pageNum") Integer pageNum) {
+        if (null == pageNum) {
+            pageNum = 1;
+        }
+        PageHelper.startPage(pageNum, 20, " case_id desc");
+        List<CaseInfo> caseInfoList = caseInfoService.selectCoverImgList();
+        return AjaxResult.success(caseInfoList);
+    }
+
+    /**
+     * 通知分页查询
+     *
+     * @param pageNum
+     * @return com.zxw.framework.web.domain.AjaxResult
+     * @author Zhouxw
+     * @date 2021/01/20 12:02
+     */
+    @GetMapping("/mini/noticePage/{pageNum}")
+    @ResponseBody
+    public AjaxResult noticePage(@PathVariable("pageNum") Integer pageNum) {
+        if (null == pageNum) {
+            pageNum = 1;
+        }
+        // 最新通知列表，4条
+        PageHelper.startPage(pageNum, 15, " create_time desc");
+        List<Notice> noticeList = noticeService.selectNoticeList(new Notice());
+        return AjaxResult.success(noticeList);
     }
 }

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zxw.project.system.caseInfo.mapper.CaseInfoMapper">
 
     <resultMap type="CaseInfo" id="CaseInfoResult">
-        <result property="caseId"    column="case_id"    />
-        <result property="caseMenuId"    column="case_menu_id"    />
-        <result property="caseName"    column="case_name"    />
-        <result property="caseText"    column="case_text"    />
-        <result property="imgType"    column="img_type"    />
-        <result property="coverImg"    column="cover_img"    />
-        <result property="viewTimes"    column="view_times"    />
-        <result property="uploadTime"    column="upload_time"    />
-        <result property="createBy"    column="create_by"    />
-        <result property="createTime"    column="create_time"    />
-        <result property="updateBy"    column="update_by"    />
-        <result property="updateTime"    column="update_time"    />
+        <result property="caseId" column="case_id"/>
+        <result property="caseMenuId" column="case_menu_id"/>
+        <result property="caseName" column="case_name"/>
+        <result property="caseText" column="case_text"/>
+        <result property="imgType" column="img_type"/>
+        <result property="coverImg" column="cover_img"/>
+        <result property="viewTimes" column="view_times"/>
+        <result property="uploadTime" column="upload_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
     </resultMap>
 
     <sql id="selectCaseInfoVo">
@@ -26,11 +26,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectCaseInfoList" parameterType="CaseInfo" resultMap="CaseInfoResult">
         <include refid="selectCaseInfoVo"/>
         <where>
-            <if test="caseMenuId != null "> and case_menu_id = #{caseMenuId}</if>
-            <if test="caseName != null  and caseName != ''"> and case_name like concat('%', #{caseName}, '%')</if>
-            <if test="caseText != null  and caseText != ''"> and case_text like concat('%', #{caseText}, '%')</if>
-            <if test="imgType != null  and imgType != ''"> and img_type = #{imgType}</if>
-            <if test="params.beginUploadTime != null and params.beginUploadTime != '' and params.endUploadTime != null and params.endUploadTime != ''"> and upload_time between #{params.beginUploadTime} and #{params.endUploadTime}</if>
+            <if test="caseMenuId != null ">and case_menu_id = #{caseMenuId}</if>
+            <if test="caseName != null  and caseName != ''">and case_name like concat('%', #{caseName}, '%')</if>
+            <if test="caseText != null  and caseText != ''">and case_text like concat('%', #{caseText}, '%')</if>
+            <if test="imgType != null  and imgType != ''">and img_type = #{imgType}</if>
+            <if test="params.beginUploadTime != null and params.beginUploadTime != '' and params.endUploadTime != null and params.endUploadTime != ''">
+                and upload_time between #{params.beginUploadTime} and #{params.endUploadTime}
+            </if>
         </where>
     </select>
 
@@ -54,7 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="createTime != null">create_time,</if>
             <if test="updateBy != null">update_by,</if>
             <if test="updateTime != null">update_time,</if>
-         </trim>
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="caseId != null">#{caseId},</if>
             <if test="caseMenuId != null">#{caseMenuId},</if>
@@ -68,7 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="createTime != null">#{createTime},</if>
             <if test="updateBy != null">#{updateBy},</if>
             <if test="updateTime != null">#{updateTime},</if>
-         </trim>
+        </trim>
     </insert>
 
     <update id="updateCaseInfo" parameterType="CaseInfo">
@@ -107,16 +109,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <select id="selectPreCaseInfoById" parameterType="Integer" resultMap="CaseInfoResult">
         <include refid="selectCaseInfoVo"/>
-        where case_id  &lt;  #{caseId} order by case_id desc LIMIT 1
+        where case_id &lt; #{caseId} order by case_id desc LIMIT 1
     </select>
 
     <select id="selectNextCaseInfoById" parameterType="Integer" resultMap="CaseInfoResult">
         <include refid="selectCaseInfoVo"/>
-        where case_id  &gt;  #{caseId} order by case_id asc LIMIT 1
+        where case_id &gt; #{caseId} order by case_id asc LIMIT 1
     </select>
 
-    <select id="selectCoverImgList" parameterType="CaseInfo" resultMap="CaseInfoResult">
+    <select id="selectCoverImgList" parameterType="Integer" resultMap="CaseInfoResult">
         <include refid="selectCaseInfoVo"/>
-        where cover_img is not null and cover_img != '' order by case_id desc LIMIT 10
+        where cover_img is not null and cover_img != ''
     </select>
 </mapper>

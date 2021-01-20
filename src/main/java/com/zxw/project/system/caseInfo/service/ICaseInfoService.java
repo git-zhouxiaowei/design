@@ -3,6 +3,7 @@ package com.zxw.project.system.caseInfo.service;
 import java.util.List;
 
 import com.zxw.project.system.caseInfo.domain.CaseInfo;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 案例Service接口
@@ -87,9 +88,10 @@ public interface ICaseInfoService {
     /**
      * 查询最新的含封面图片的案例列表
      *
+     * @return java.util.List<com.zxw.project.system.caseInfo.domain.CaseInfo>
      * @author Zhouxw
      * @date 2021/01/19 14:35
-     * @return java.util.List<com.zxw.project.system.caseInfo.domain.CaseInfo>
      */
     List<CaseInfo> selectCoverImgList();
 }
+

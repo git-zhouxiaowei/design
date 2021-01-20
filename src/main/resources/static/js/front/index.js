@@ -15,7 +15,7 @@ function openCaseMenu(caseMenuId, caseType, caseMenuName, imgType) {
     } else if ('text' == caseType) {
         // 如果菜单类型是富文本，那么取出最新的一条，直接展示div
         var url = ctx + "front/textCaseInfo/" + caseMenuId;
-        $.post(url, function (resp) {
+        $.get(url, function (resp) {
             var caseName = resp.data.caseName;
             var textCaeInfo = resp.data.caseText;
             initData(caseName, textCaeInfo);
@@ -72,7 +72,7 @@ function caseImgPage(pageNum, caseMenuId, caseType, imgType, caseMenuName) {
 // 查询图片详情，展示
 function caseTextShow(caseInfoId, caseMenuName) {
     var url = ctx + "front/caseText/" + caseInfoId;
-    $.post(url, function (resp) {
+    $.get(url, function (resp) {
         var caseInfo = resp.data.caseInfo;
         var preCaseInfo = resp.data.preCaseInfo;
         var nextCaseInfo = resp.data.nextCaseInfo;
@@ -106,7 +106,7 @@ function caseTextShow(caseInfoId, caseMenuName) {
 // 查询通知详情，展示
 function noticeShow(noticeId, caseMenuName) {
     var url = ctx + "front/noticeInfo/" + noticeId;
-    $.post(url, function (resp) {
+    $.get(url, function (resp) {
         var notice = resp.data.notice;
         var preNotice = resp.data.preNotice;
         var nextNotice = resp.data.nextNotice;
