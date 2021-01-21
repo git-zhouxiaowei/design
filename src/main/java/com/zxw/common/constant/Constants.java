@@ -97,24 +97,9 @@ public class Constants {
     public static final String RESOURCE_PREFIX = "/profile";
 
     /**
-     * 商铺文件目录
-     */
-    public static final String SHOP_FILE = "shopFile";
-
-    /**
      * 临时目录
      */
     public static final String TEMP = "temp";
-
-    /**
-     * 已审核
-     */
-    public static final String REVIEW = "1";
-
-    /**
-     * 店铺编号前缀
-     */
-    public static final String SHOP_PRE = "SHOP-FILE-";
 
     /**
      * 验证码类型
@@ -140,11 +125,6 @@ public class Constants {
      * 浏览器类型
      */
     public static final String BROWSER_IE = "MSIE", BROWSER_FIREFOX = "Firefox", BROWSER_CHROME = "Chrome", BROWSER_WIN = "Windows NT", BROWSER_MACINTOSH = "Macintosh";
-
-    /**
-     * 商铺类型
-     */
-    public static final String PERSON = "101", COMPANY = "102";
 
     /**
      * 时间量
@@ -186,4 +166,9 @@ public class Constants {
      * 前台菜单类型
      */
     public static final String YES = "Y", NO = "N";
+
+    /**
+     * 菜单类型
+     */
+    public static final String IMG = "imgs", TEXT = "text", LIST = "list";
 }

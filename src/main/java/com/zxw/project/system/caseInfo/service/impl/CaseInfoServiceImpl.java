@@ -105,7 +105,7 @@ public class CaseInfoServiceImpl implements ICaseInfoService {
     }
 
     @Override
-    public List<CaseInfo> selectCoverImgList() {
-        return caseInfoMapper.selectCoverImgList();
+    public List<CaseInfo> selectCoverImgList(Integer caseMenuId) {
+        return caseInfoMapper.selectCoverImgList(caseMenuId);
     }
 }

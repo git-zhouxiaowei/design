@@ -119,6 +119,9 @@
 
     <select id="selectCoverImgList" parameterType="Integer" resultMap="CaseInfoResult">
         <include refid="selectCaseInfoVo"/>
-        where cover_img is not null and cover_img != ''
+        <where>
+            cover_img is not null and cover_img != ''
+            <if test="caseMenuId != null ">and case_menu_id = #{caseMenuId}</if>
+        </where>
     </select>
 </mapper>

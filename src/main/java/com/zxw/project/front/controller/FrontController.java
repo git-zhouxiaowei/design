@@ -214,7 +214,7 @@ public class FrontController extends BaseController {
         List<BannerInfo> bannerInfoList = bannerInfoService.selectBannerInfoList(new BannerInfo());
         // 首页最新案例滑动列表，10条
         PageHelper.startPage(1, 10, " case_id desc");
-        List<CaseInfo> caseInfoList = caseInfoService.selectCoverImgList();
+        List<CaseInfo> caseInfoList = caseInfoService.selectCoverImgList(null);
         // 最新通知列表，4条
         PageHelper.startPage(1, 4, " create_time desc");
         List<Notice> noticeList = noticeService.selectNoticeList(new Notice());
@@ -262,13 +262,31 @@ public class FrontController extends BaseController {
      */
     @GetMapping("/mini/newCaseInfoPage/{pageNum}")
     @ResponseBody
-    public AjaxResult newCaseInfoPage(@PathVariable("pageNum") Integer pageNum) {
+    public AjaxResult newCaseInfoPage(@PathVariable("pageNum") Integer pageNum, Integer caseMenuId) {
         if (null == pageNum) {
             pageNum = 1;
         }
         PageHelper.startPage(pageNum, 20, " case_id desc");
-        List<CaseInfo> caseInfoList = caseInfoService.selectCoverImgList();
-        return AjaxResult.success(caseInfoList);
+        List<CaseInfo> caseInfoList = caseInfoService.selectCoverImgList(caseMenuId);
+        TableDataInfo dataTable = getDataTable(caseInfoList);
+
+        String caseMenuName = "最新设计";
+        boolean haveFlag = false;
+        if (null != caseMenuId) {
+            CaseMenu caseMenu = caseMenuService.selectCaseMenuById(caseMenuId);
+            caseMenuName = caseMenu.getCaseMenuName();
+        }
+        long total = dataTable.getTotal();
+        if (total > caseInfoList.size() * pageNum) {
+            haveFlag = true;
+        }
+
+        Map<String, Object> menuMap = new HashedMap(5);
+        menuMap.put("caseMenuId", caseMenuId);
+        menuMap.put("caseMenuName", caseMenuName);
+        menuMap.put("haveFlag", haveFlag);
+        menuMap.put("caseList", caseInfoList);
+        return AjaxResult.success(menuMap);
     }
 
     /**
@@ -289,5 +307,52 @@ public class FrontController extends BaseController {
         PageHelper.startPage(pageNum, 15, " create_time desc");
         List<Notice> noticeList = noticeService.selectNoticeList(new Notice());
         return AjaxResult.success(noticeList);
+    }
+
+    /**
+     * 小程序首页数据初始化
+     *
+     * @return com.zxw.framework.web.domain.AjaxResult
+     * @author Zhouxw
+     * @date 2021/01/20 10:46
+     */
+    @GetMapping("/mini/caseTabInitData")
+    @ResponseBody
+    public AjaxResult miniCaseInitData() {
+        // 案例菜单
+        CaseMenu caseMenu = new CaseMenu();
+        caseMenu.setMenuFlag(Constants.NO);
+        List<CaseMenu> caseMenuList = caseMenuService.selectCaseMenuList(caseMenu);
+
+        //组装数据
+        List<Map> menuList = new ArrayList<>();
+
+        if (null != caseMenuList && caseMenuList.size() > 0) {
+            for (CaseMenu menu : caseMenuList) {
+                String caseType = menu.getCaseType();
+                if (Constants.LIST.equals(caseType)) {
+                    //如果是列表类型的菜单不显示
+                    continue;
+                }
+                CaseInfo caseInfo = new CaseInfo();
+                caseInfo.setCaseMenuId(menu.getCaseMenuId());
+                PageHelper.startPage(1, 10, " create_time desc");
+                List<CaseInfo> caseList = caseInfoService.selectCaseInfoList(caseInfo);
+                TableDataInfo dataTable = getDataTable(caseList);
+                Map<String, Object> menuMap = new HashedMap(5);
+                menuMap.put("caseMenuId", menu.getCaseMenuId());
+                menuMap.put("caseMenuName", menu.getCaseMenuName());
+                menuMap.put("caseType", caseType);
+                long total = dataTable.getTotal();
+                if (total > caseList.size()) {
+                    menuMap.put("haveFlag", true);
+                } else {
+                    menuMap.put("haveFlag", false);
+                }
+                menuMap.put("caseList", caseList);
+                menuList.add(menuMap);
+            }
+        }
+        return AjaxResult.success(menuList);
     }
 }
