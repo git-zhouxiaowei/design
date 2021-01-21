@@ -281,7 +281,7 @@ public class FrontController extends BaseController {
             haveFlag = true;
         }
 
-        Map<String, Object> menuMap = new HashedMap(5);
+        Map<String, Object> menuMap = new HashedMap(4);
         menuMap.put("caseMenuId", caseMenuId);
         menuMap.put("caseMenuName", caseMenuName);
         menuMap.put("haveFlag", haveFlag);
@@ -354,5 +354,24 @@ public class FrontController extends BaseController {
             }
         }
         return AjaxResult.success(menuList);
+    }
+
+    /**
+     * 小程序-关于我们
+     *
+     * @author Zhouxw
+     * @date 2021/01/21 16:38
+     * @return com.zxw.framework.web.domain.AjaxResult
+     */
+    @GetMapping("/mini/aboutInfo")
+    @ResponseBody
+    public AjaxResult aboutInfo() {
+        //固定查询了解达德
+        CaseInfo caseInfo = caseInfoService.selectTextCaseInfoByMenuId(4);
+        AboutInfo aboutInfo = aboutInfoService.selectAboutInfoById(1);
+        Map<String,Object> dataMap = new HashedMap(2);
+        dataMap.put("caseInfo",caseInfo);
+        dataMap.put("aboutInfo",aboutInfo);
+        return AjaxResult.success(dataMap);
     }
 }
