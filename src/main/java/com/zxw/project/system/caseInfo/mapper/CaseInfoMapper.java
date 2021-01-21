@@ -87,6 +87,7 @@ public interface CaseInfoMapper {
 
     /**
      * 查询最新的含封面图片的案例列表
+     *
      * @param caseMenuId
      * @return java.util.List<com.zxw.project.system.caseInfo.domain.CaseInfo>
      * @author Zhouxw
