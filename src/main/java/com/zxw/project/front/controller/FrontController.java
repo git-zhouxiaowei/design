@@ -303,10 +303,19 @@ public class FrontController extends BaseController {
         if (null == pageNum) {
             pageNum = 1;
         }
-        // 最新通知列表，4条
+        // 最新通知列表，15
         PageHelper.startPage(pageNum, 15, " create_time desc");
         List<Notice> noticeList = noticeService.selectNoticeList(new Notice());
-        return AjaxResult.success(noticeList);
+        TableDataInfo dataTable = getDataTable(noticeList);
+        boolean haveFlag = false;
+        long total = dataTable.getTotal();
+        if (total > noticeList.size() * pageNum) {
+            haveFlag = true;
+        }
+        Map<String, Object> menuMap = new HashedMap(2);
+        menuMap.put("haveFlag", haveFlag);
+        menuMap.put("noticeList", noticeList);
+        return AjaxResult.success(menuMap);
     }
 
     /**
@@ -359,9 +368,9 @@ public class FrontController extends BaseController {
     /**
      * 小程序-关于我们
      *
+     * @return com.zxw.framework.web.domain.AjaxResult
      * @author Zhouxw
      * @date 2021/01/21 16:38
-     * @return com.zxw.framework.web.domain.AjaxResult
      */
     @GetMapping("/mini/aboutInfo")
     @ResponseBody
@@ -369,9 +378,9 @@ public class FrontController extends BaseController {
         //固定查询了解达德
         CaseInfo caseInfo = caseInfoService.selectTextCaseInfoByMenuId(4);
         AboutInfo aboutInfo = aboutInfoService.selectAboutInfoById(1);
-        Map<String,Object> dataMap = new HashedMap(2);
-        dataMap.put("caseInfo",caseInfo);
-        dataMap.put("aboutInfo",aboutInfo);
+        Map<String, Object> dataMap = new HashedMap(2);
+        dataMap.put("caseInfo", caseInfo);
+        dataMap.put("aboutInfo", aboutInfo);
         return AjaxResult.success(dataMap);
     }
 }
