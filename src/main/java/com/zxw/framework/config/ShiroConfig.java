@@ -266,6 +266,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/profile/**", "anon");
         filterChainDefinitionMap.put("/front/**", "anon");
         filterChainDefinitionMap.put("/", "anon");
+        filterChainDefinitionMap.put("/XhMOuubokk.txt", "anon");
         // 退出 logout地址，shiro去清除session
         filterChainDefinitionMap.put("/logout", "logout");
         // 不需要拦截的访问
