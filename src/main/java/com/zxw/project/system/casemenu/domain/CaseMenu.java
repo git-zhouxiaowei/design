@@ -1,4 +1,4 @@
-package com.zxw.project.system.caseMenu.domain;
+package com.zxw.project.system.casemenu.domain;
 
 import com.zxw.framework.aspectj.lang.annotation.Excel;
 import com.zxw.framework.web.domain.BaseEntity;

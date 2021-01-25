@@ -1,17 +1,16 @@
-package com.zxw.project.system.caseInfo.mapper;
+package com.zxw.project.system.caseinfo.service;
 
 import java.util.List;
 
-import com.zxw.project.system.caseInfo.domain.CaseInfo;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.zxw.project.system.caseinfo.domain.CaseInfo;
 
 /**
- * 案例Mapper接口
+ * 案例Service接口
  *
  * @author Zhouxw
  * @date 2021-01-07
  */
-public interface CaseInfoMapper {
+public interface ICaseInfoService {
     /**
      * 查询案例
      *
@@ -45,7 +44,15 @@ public interface CaseInfoMapper {
     public int updateCaseInfo(CaseInfo caseInfo);
 
     /**
-     * 删除案例
+     * 批量删除案例
+     *
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+    public int deleteCaseInfoByIds(String ids);
+
+    /**
+     * 删除案例信息
      *
      * @param caseId 案例ID
      * @return 结果
@@ -53,19 +60,12 @@ public interface CaseInfoMapper {
     public int deleteCaseInfoById(Integer caseId);
 
     /**
-     * 批量删除案例
+     * 根据菜单ID查询最后一条案例
      *
-     * @param caseIds 需要删除的数据ID
-     * @return 结果
-     */
-    public int deleteCaseInfoByIds(String[] caseIds);
-
-    /**
-     * @Author Zhouxw
-     * @Date 2021/01/13 10:59
-     * @Description 根据菜单ID查询最后一条案例
-     * @Param [caseMenuId]
-     * @Return com.zxw.project.system.caseInfo.domain.CaseInfo
+     * @param caseMenuId
+     * @return com.zxw.project.system.caseinfo.domain.CaseInfo
+     * @author Zhouxw
+     * @date 2021/01/25 9:52
      */
     CaseInfo selectTextCaseInfoByMenuId(Integer caseMenuId);
 
@@ -95,3 +95,4 @@ public interface CaseInfoMapper {
      */
     List<CaseInfo> selectCoverImgList(Integer caseMenuId);
 }
+

@@ -1,8 +1,8 @@
-package com.zxw.project.system.caseMenu.service;
+package com.zxw.project.system.casemenu.service;
 
 import java.util.List;
 
-import com.zxw.project.system.caseMenu.domain.CaseMenu;
+import com.zxw.project.system.casemenu.domain.CaseMenu;
 
 /**
  * 前台菜单管理Service接口

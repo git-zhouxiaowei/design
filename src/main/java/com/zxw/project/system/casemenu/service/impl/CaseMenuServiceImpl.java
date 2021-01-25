@@ -1,13 +1,13 @@
-package com.zxw.project.system.caseMenu.service.impl;
+package com.zxw.project.system.casemenu.service.impl;
 
 import java.util.List;
 
 import com.zxw.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.zxw.project.system.caseMenu.mapper.CaseMenuMapper;
-import com.zxw.project.system.caseMenu.domain.CaseMenu;
-import com.zxw.project.system.caseMenu.service.ICaseMenuService;
+import com.zxw.project.system.casemenu.mapper.CaseMenuMapper;
+import com.zxw.project.system.casemenu.domain.CaseMenu;
+import com.zxw.project.system.casemenu.service.ICaseMenuService;
 import com.zxw.common.utils.text.Convert;
 
 /**

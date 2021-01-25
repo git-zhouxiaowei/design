@@ -1,4 +1,4 @@
-package com.zxw.project.system.caseMenu.controller;
+package com.zxw.project.system.casemenu.controller;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.zxw.framework.aspectj.lang.annotation.Log;
 import com.zxw.framework.aspectj.lang.enums.BusinessType;
-import com.zxw.project.system.caseMenu.domain.CaseMenu;
-import com.zxw.project.system.caseMenu.service.ICaseMenuService;
+import com.zxw.project.system.casemenu.domain.CaseMenu;
+import com.zxw.project.system.casemenu.service.ICaseMenuService;
 import com.zxw.framework.web.controller.BaseController;
 import com.zxw.framework.web.domain.AjaxResult;
 import com.zxw.common.utils.poi.ExcelUtil;

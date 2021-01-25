@@ -1,13 +1,13 @@
-package com.zxw.project.system.caseInfo.service.impl;
+package com.zxw.project.system.caseinfo.service.impl;
 
 import java.util.List;
 
 import com.zxw.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.zxw.project.system.caseInfo.mapper.CaseInfoMapper;
-import com.zxw.project.system.caseInfo.domain.CaseInfo;
-import com.zxw.project.system.caseInfo.service.ICaseInfoService;
+import com.zxw.project.system.caseinfo.mapper.CaseInfoMapper;
+import com.zxw.project.system.caseinfo.domain.CaseInfo;
+import com.zxw.project.system.caseinfo.service.ICaseInfoService;
 import com.zxw.common.utils.text.Convert;
 
 /**

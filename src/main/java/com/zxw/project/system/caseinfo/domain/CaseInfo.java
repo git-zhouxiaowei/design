@@ -1,4 +1,4 @@
-package com.zxw.project.system.caseInfo.domain;
+package com.zxw.project.system.caseinfo.domain;
 
 import java.util.Date;
 

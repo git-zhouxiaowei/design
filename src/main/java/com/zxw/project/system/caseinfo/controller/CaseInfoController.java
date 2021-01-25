@@ -1,9 +1,9 @@
-package com.zxw.project.system.caseInfo.controller;
+package com.zxw.project.system.caseinfo.controller;
 
 import java.util.List;
 
-import com.zxw.project.system.caseMenu.domain.CaseMenu;
-import com.zxw.project.system.caseMenu.service.ICaseMenuService;
+import com.zxw.project.system.casemenu.domain.CaseMenu;
+import com.zxw.project.system.casemenu.service.ICaseMenuService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.zxw.framework.aspectj.lang.annotation.Log;
 import com.zxw.framework.aspectj.lang.enums.BusinessType;
-import com.zxw.project.system.caseInfo.domain.CaseInfo;
-import com.zxw.project.system.caseInfo.service.ICaseInfoService;
+import com.zxw.project.system.caseinfo.domain.CaseInfo;
+import com.zxw.project.system.caseinfo.service.ICaseInfoService;
 import com.zxw.framework.web.controller.BaseController;
 import com.zxw.framework.web.domain.AjaxResult;
 import com.zxw.common.utils.poi.ExcelUtil;
