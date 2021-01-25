@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zxw.project.system.caseMenu.mapper.CaseMenuMapper">
+<mapper namespace="com.zxw.project.system.casemenu.mapper.CaseMenuMapper">
 
     <resultMap type="CaseMenu" id="CaseMenuResult">
         <result property="caseMenuId" column="case_menu_id"/>
